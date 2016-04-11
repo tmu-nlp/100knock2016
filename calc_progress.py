@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
 
-plt.figure(figsize=(14, 16))
+plt.figure(figsize=(14, 14))
 l100 = list(range(0, 100))
 users = list()
 data = list()
