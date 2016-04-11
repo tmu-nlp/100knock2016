@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
 
-plt.figure(figsize=(12, 8))
+plt.figure(figsize=(14, 16))
 l100 = list(range(0, 100))
 users = list()
 data = list()
@@ -47,7 +47,7 @@ plt.ylim([0, 100])
 plt.ylabel('Total')
 plt.yticks(range(0, 101, 10))
 handles, labels = ax.get_legend_handles_labels()
-plt.legend(handles[::-1], labels[::-1], loc='upper right', bbox_to_anchor=(1.24, 1))
-plt.subplots_adjust(right=0.83)
+plt.legend(handles[::-1], labels[::-1], loc='upper right', bbox_to_anchor=(1.19, 1))
+plt.subplots_adjust(right=0.86)
 plt.grid(True)
 plt.savefig('progress.png')
