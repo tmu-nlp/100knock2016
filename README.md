@@ -17,3 +17,5 @@ http://www.cl.ecei.tohoku.ac.jp/nlp100/
 >>> knock19.py
 
 >> ・・・
+
+![dir](https://github.com/tmu-nlp/100kcnok2016/blob/master/dir.png)
