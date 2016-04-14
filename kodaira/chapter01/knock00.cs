@@ -1,3 +1,8 @@
+/*
+ * Chapter01, knock00
+ * Task: Reverse string.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
