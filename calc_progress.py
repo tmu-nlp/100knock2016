@@ -15,8 +15,9 @@ for userf in Path('./').iterdir():
         for i in range(1, 11):
             count = 0
             for j in l100[(i - 1) * 10:i * 10:]:
-                p = Path(userf.name + '/chapter{:0>2}/knock{:0>2}.py'.format(i, j))
-                if p.exists():
+                ppy = Path(userf.name + '/chapter{:0>2}/knock{:0>2}.py'.format(i, j))
+                pcs = Path(userf.name + '/chapter{:0>2}/knock{:0>2}.cs'.format(i, j))
+                if ppy.exists() or pcs.exists():
                     count += 1
             userd.append(count)
 data = np.array(data, dtype=int)
@@ -48,6 +49,6 @@ plt.ylabel('Total')
 plt.yticks(range(0, 101, 10))
 handles, labels = ax.get_legend_handles_labels()
 plt.legend(handles[::-1], labels[::-1], loc='upper right', bbox_to_anchor=(1.19, 1))
-plt.subplots_adjust(right=0.86)
+plt.subplots_adjust(top=0.98, bottom=0.02, right=0.84, left=0.05)
 plt.grid(True)
 plt.savefig('progress.png')
