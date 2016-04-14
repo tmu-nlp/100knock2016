@@ -23,16 +23,25 @@ def clear(x):
 a="paraparaparadise"
 b="paragraph"
 pro=[]
+dif=[]
 x=clear(bigram(a))
+if "se" in x:
+    print("x has se")
 y=clear(bigram(b))
+if "se" in y:
+    print("y has se")
 sum=clear(x+y)
 for i in x:
-    c=0
     for j in y:
         if i==j:
             pro=pro+[i]
-            c+=1
-dif=sum-pro
+dif=clear(x+y)
+for i in pro:
+    c=0
+    for j in dif:
+        if i==j:
+            del dif[c]
+        c+=1
 print(sum)
 print(dif)
 print(pro)
