@@ -33,7 +33,7 @@ for i in range(data.shape[1]):
             data[:, i],       # height
             width,            # width
             bottom,           # offset of height
-            color=cm.Accent(i/10),  # color
+            color=cm.Accent(0.8 - (i/10)),  # color
             label=labels[i]   # label
             )
     for j in range(len(data)):
