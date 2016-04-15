@@ -1,4 +1,4 @@
-# 100kcnok2016
+# 100knock2016
 http://www.cl.ecei.tohoku.ac.jp/nlp100/
 
 # みんなの進捗
