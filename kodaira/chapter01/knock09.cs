@@ -10,7 +10,7 @@ using System.Linq;
 public class TypoglycemiaSentence {
     static public void Main() {
         string sentence = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind .";
-        // get word bigram
+       
         Console.WriteLine(Typoglycemia(sentence));
     }
 
