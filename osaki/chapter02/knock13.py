@@ -1,0 +1,10 @@
+f1=open("col1.txt","r")
+s1=f1.read()
+f1.close()
+f2=open("col2.txt","r")
+s2=f2.read()
+f2.close()
+s0=s1+"	"+s2
+f0=open("col.txt","w")
+f0.write(s0)
+f0.close()
