@@ -6,13 +6,14 @@
 using System;
 
 
-public class Count {
+public class CountLength {
     static public void Main() {
         string sentence = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
-        Console.WriteLine(int2string(count(sentence)));
+        Console.WriteLine(IntToString(Count(sentence)));
     }
 
-    public static int[] count(string str) {
+
+    public static int[] Count(string str) {
         string[] delimiter= new string[] {" "};
         string[] words = str.Split(delimiter, StringSplitOptions.None);
         int[] nums = new int[words.Length];
@@ -25,7 +26,7 @@ public class Count {
         return nums;
     }
 
-    public static string int2string(int[] nums) {
+    public static string IntToString(int[] nums) {
         string num_s = "";
         foreach (int num in nums) {
             num_s += num.ToString();
