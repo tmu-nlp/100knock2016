@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class HelloWorld
+public class ReverseSTring
 {
     static public void Main ()
     {
