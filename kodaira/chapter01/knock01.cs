@@ -9,17 +9,16 @@ using System;
 public class SliceString {
     static public void Main() {
         string word = "パタトクカシーー";
-        Console.WriteLine(slice(word, 0, 2));
+        Console.WriteLine(Slice(word, 0, 2));
     }
 
-    public static string slice(string str, int start=0, int stride=1) {
-        string concat_string = "";
+
+    public static string Slice(string str, int start=0, int stride=1) {
+        string concatString = "";
         for (int i=start; i < str.Length; i += stride) {
-            concat_string += str[i];
+            concatString += str[i];
         }
-
-        return concat_string;
+        return concatString;
     }
-
 }
 
