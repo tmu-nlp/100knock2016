@@ -1,4 +1,5 @@
-#-*-coding:utf-8-*-
+#!-*-coding:utf-8-*-
+
 
 import json
 import re
@@ -21,11 +22,15 @@ for line in f:
                 break
             if a == 1 and re.match(pattern3, text):
                 mylist = text.split(" = ")
-                print(mylist)
                 mylist[0] = mylist[0].replace("|","")
+                mylist[1] = mylist[1].replace("\"","")
                 mylist[1] = mylist[1].replace("]","")
-                mylist[1] = re.sub("\[.+\|","",mylist[1])
+                mylist[1] = re.sub("\[.+?\|","",mylist[1])
+                mylist[1] = mylist[1].replace("}","")
+                mylist[1] = re.sub("\{.+\|","",mylist[1])
                 mylist[1] = mylist[1].replace("[[","")
+                mylist[1] = re.sub("<.+>","",mylist[1])
+                mylist[1] = re.sub(".+\|","",mylist[1])
                 mydict[mylist[0]] = mylist[1]
         for key, value in mydict.items():
-            print(key,value)
+                print(key,value)

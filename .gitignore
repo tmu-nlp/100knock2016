@@ -1,6 +1,12 @@
 # ryosuke added
 *.DS_Store
 *.swp
+*
+*/*
+*/*/*
+!*.py
+!*.cs
+update_progress.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
