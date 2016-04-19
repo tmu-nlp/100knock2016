@@ -5,6 +5,7 @@
 */*
 */*/*
 !*.py
+!*.cs
 update_progress.py
 
 # Byte-compiled / optimized / DLL files
