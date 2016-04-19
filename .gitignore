@@ -1,6 +1,8 @@
 # ryosuke added
 *.DS_Store
 *.swp
+*
+*/*
 */*/*
 !*.py
 
