@@ -1,5 +1,5 @@
-a = "stressed" 
-b = ""
-for i in range(7, -1, -1):
-   b += a[i]
-print b
+s = "stressed" 
+ans = ""
+for i in range(len(s) - 1, -1, -1):
+	ans += s[i]
+print(ans)
