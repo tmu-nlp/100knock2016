@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-a = u"パトカー"
-b = u"タクシー"
-c = ""
+s1 = "パトカー"
+s2 = "タクシー"
+ans = ""
 for i in range(0, 4):
-   c += a[i]
-   c += b[i]
-print c
+	ans += s1[i]
+	ans += s2[i]
+print(ans)
