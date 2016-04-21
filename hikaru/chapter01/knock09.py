@@ -18,4 +18,4 @@ for w in word:
 	else:
 		 result.append(w)
 
-print result
+print (result)

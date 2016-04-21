@@ -5,8 +5,8 @@ element = {}
 
 for (i, x) in enumerate(list):
     if i in [0, 4, 5, 6, 7, 8, 14, 15, 18]:
-        element[x[0]] = i+1
+        element[i+1] = x[0]
     else:
-        element[x[0]+x[1]] = i+1
+        element[i+1] = x[0]+x[1]
 print (element)
 	

@@ -9,14 +9,14 @@ def ngramW(n, str):
 	return ret
 
 def ngramC(n, str):
-        ret = []
-	str2 = ""
-        for cha in str:
-		if cha != " ":
-			str2 += cha 
-        for i in range(len(str2) - n + 1):
-                ret.append(tuple(str2[i:i+n]))
-        return ret
+    ret = []
+    str2 = ""
+    for cha in str:
+        if cha != " ":
+		    str2 += cha 
+    for i in range(len(str2) - n + 1):
+        ret.append(tuple(str[i:i+n]))
+    return ret
 
 print ngramW(2,"I am an NLPer")
 print ngramC(2,"I am an NLPer")
