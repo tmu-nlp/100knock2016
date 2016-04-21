@@ -1,10 +1,7 @@
 # ryosuke added
 *.DS_Store
 *.swp
-#*
-#*/*
-#*/*/*
-!*.py
+!*/chapter*/knock*.py
 !*.cs
 update_progress.py
 
