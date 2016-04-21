@@ -1,4 +1,5 @@
 #coding: UTF-8
+#
 def ngram(s, n):
   t = []
   ans = []
@@ -8,10 +9,9 @@ def ngram(s, n):
     for x in s: 
       t += x.split(" ")
   for i in range(len(t) - n + 1): 
-     ans += [t[i:i +n]]
-  #print(ans)
+     ans += [list(t[i:i +n])]
   return ans
 
-ngram("I am an NLPer", 2)
-ngram(["I am an NLPer"], 2)
+print(ngram("I am an NLPer", 2))
+print(ngram(["I am an NLPer"], 2))
     
