@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-a = u"パタトクカシーー"
-b = ""
+s = "パタトクカシーー"
+ans = ""
 for i in range(0, 7, 2):
-   b += a[i]
-print b
+	ans += s[i]
+print(ans)
