@@ -1,3 +1,6 @@
+# python: python3 knock19.py ~/work/100knock_data/hightemp.txt
+# UNIXコマンド: cut -f 1 ~/work/100knock_data/hightemp.txt | sort | uniq -c | sort -r
+
 import sys
 from collections import defaultdict
 
@@ -9,4 +12,4 @@ for line in rf:
 rf.close()
 
 for k, v in sorted(freqdict.items(), key=lambda x:x[1], reverse=True):
-    print(k, ':', v)
+    print(v, k)

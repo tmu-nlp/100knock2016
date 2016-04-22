@@ -1,3 +1,6 @@
+# python: python3 knock18.py ~/work/100knock_data/hightemp.txt
+# UNIXコマンド: sort -k3r ~/work/100knock_data/hightemp.txt
+
 import sys
 
 rf = open(sys.argv[1], 'r')
