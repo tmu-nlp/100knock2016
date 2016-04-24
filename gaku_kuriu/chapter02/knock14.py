@@ -1,3 +1,6 @@
+# python: python3 knock14.py 任意の数N ~/work/100knock_data/hightemp.txt
+# UNIXコマンド: head -n 任意の数N ~/work/100knock_data/hightemp.txt
+
 import sys
 
 N = int(sys.argv[1])

@@ -1,3 +1,6 @@
+# python: python3 knock17.py ~/work/100knock_data/hightemp.txt
+# UNIXコマンド: cut -f 1 ~/work/100knock_data/hightemp.txt | sort | uniq
+
 import sys
 
 rf = open(sys.argv[1], 'r')
