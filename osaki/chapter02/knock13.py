@@ -1,3 +1,5 @@
+#unix command "paste col1.txt col2.txt"
+
 f1=open("col1.txt","r")
 s1=f1.read()
 f1.close()

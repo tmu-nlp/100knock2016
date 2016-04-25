@@ -1,3 +1,5 @@
+#unix command "wc hightemp.txt"
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
