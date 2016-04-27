@@ -3,7 +3,7 @@ string = "I am an NLPer"
 wordBiGram = defaultdict(lambda: 0)
 letterBiGram = defaultdict(lambda: 0)
 
-def trainFromStr(str_in):
+def biGram(str_in):
 	wordList = string.split()
 	for i in range(len(wordList) - 1):
 		wordBiGram[wordList[i] + " " + wordList[i+1]] += 1
@@ -12,7 +12,7 @@ def trainFromStr(str_in):
 		letterBiGram[str_in[i:i + 2] ] += 1
 
 
-trainFromStr(string)
+biGram(string)
 print (wordBiGram)
 print(letterBiGram)
 
