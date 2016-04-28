@@ -1,3 +1,5 @@
+#cut -f 1 hightemp.txt | sort | uniq
+
 hightemp = open('hightemp.txt').readlines()
 newline = []
 

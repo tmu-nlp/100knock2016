@@ -1,3 +1,5 @@
+#wc -l hightemp.txt
+
 def gyousuu():
     count = 0
     for line in open('hightemp.txt'):

@@ -1,3 +1,5 @@
+#sort -rk3 hightemp.txt
+
 from operator import itemgetter
 hightemp = open('hightemp.txt')
 lines = []

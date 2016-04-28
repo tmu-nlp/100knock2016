@@ -1,3 +1,5 @@
+#tail -n 5 hightemp.txt
+
 N = int(input('末尾のN行: '))
  
 def matsubi(gyou):
