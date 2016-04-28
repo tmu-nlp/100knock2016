@@ -1,3 +1,5 @@
+#expand -t 1 hightemp.txt
+
 hightemp = open('hightemp.txt')
 newline = ''
 

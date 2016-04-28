@@ -1,3 +1,5 @@
+#head -n 4 hightemp.txt
+
 N = int(input('先頭からN行: '))
 
 def sentoun(gyou):
