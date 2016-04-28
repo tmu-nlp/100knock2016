@@ -1,4 +1,5 @@
 #!-*-coding:utf-8-*-
+#cat -f 1,2 hightemp.txt
 
 
 list = open("hightemp.txt").readlines()
