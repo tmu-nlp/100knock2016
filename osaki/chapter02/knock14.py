@@ -1,3 +1,5 @@
+#unix command "head -n N hightemp.txt"
+
 import sys
 
 f=open("hightemp.txt","r")

@@ -1,3 +1,5 @@
+#unix command "cut -f 1 < hightemp.txt | sort | uniq -c | sort -r"
+
 f=open("col1.txt","r")
 s=f.read()
 f.close()

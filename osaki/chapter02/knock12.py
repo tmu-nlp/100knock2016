@@ -1,3 +1,6 @@
+#unix command "cut -f 1 < hightemp.txt"
+#unix command "cut -f 2 < hightemp.txt"
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
