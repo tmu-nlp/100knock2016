@@ -1,3 +1,6 @@
+# python: python3 knock16.py 任意の分割数N ~/work/100knock_data/hightemp.txt ~/work/100knock_data/knock16/hightemp
+# UNIXコマンド: split -l 任意の分割数N ~/work/100knock_data/hightemp.txt ~/work/100knock_data/knock16/hightemp_unix
+
 import sys
 
 N = int(sys.argv[1])

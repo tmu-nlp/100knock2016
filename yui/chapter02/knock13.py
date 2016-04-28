@@ -16,3 +16,5 @@ file_col1_2.write("\n".join([col1.strip("\n") + "\t" + col2.strip("\n") for col1
 file_column1.close()
 file_column2.close()
 file_col1_2.close()
+
+#paste -d "¥t" col1.txt col2.txt

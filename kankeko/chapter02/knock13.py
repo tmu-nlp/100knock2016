@@ -1,4 +1,5 @@
 #!-*-coding:utf-8-*-
+#paste -d "\t" col1.txt col2.txt
 
 f = open("col3.txt",'w')
 list = []

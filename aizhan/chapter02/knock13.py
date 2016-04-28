@@ -1,3 +1,5 @@
+#paste -d "\t" col1.txt col2.txt
+
 col1 = open('col1.txt').read().split('\n')
 col2 = open('col2.txt').read().split('\n')
 col1tabcol2 = open('col1tabcol2','w')

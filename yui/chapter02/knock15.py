@@ -16,4 +16,6 @@ for line in input_file:
     line_list.append(line.strip())
 
 for line in line_list[-n:]:
-    print line
+    print (line)
+
+#tail -n 5 hightemp.txt

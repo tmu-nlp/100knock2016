@@ -1,3 +1,6 @@
+# python: python3 knock13.py ~/work/100knock_data/col1.txt ~/work/100knock_data/col2.txt ~/work/100knock_data/col1_2.txt
+# UNIXコマンド: paste ~/work/100knock_data/col1.txt ~/work/100knock_data/col2.txt
+
 import sys
 
 rf1 = open(sys.argv[1], 'r')
