@@ -9,3 +9,5 @@ for col1, col2 in zip(open("col1.txt", "r"), open("col2.txt", "r")):
 f = open("merge.txt", "w")
 f.write(ans)
 f.close()
+
+#paste col1.txt col2.txt
