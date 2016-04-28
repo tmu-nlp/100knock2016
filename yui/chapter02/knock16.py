@@ -25,3 +25,5 @@ for file_index in range(1, n+1):
         if len(line_list) == 0:
             break
     output_file.close()
+
+#split -l 5 hightemp.txt

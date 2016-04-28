@@ -7,6 +7,8 @@
 
 import sys
 
+print sys.argv
+
 n = int(sys.argv[1])
 
 input_file = open("hightemp.txt", "r")
@@ -18,7 +20,7 @@ for line in input_file:
     if i == n:
         break
 
-    print line
+    print (line)
 
 #
 # import sys
@@ -32,3 +34,5 @@ for line in input_file:
 #
 # for line in line_list[:n]:
 #     print line
+
+#head -n 5 hightemp.txt

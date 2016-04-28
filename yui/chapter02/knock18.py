@@ -15,3 +15,5 @@ sorted_lines = sorted(split_lines, key=lambda x: x[2], reverse=True)
 
 for line in reversed(sorted_lines):
     print "\t".join(line).strip()
+
+#sort -rk 3 hightemp.txt
