@@ -1,4 +1,6 @@
 #!-*-coding:utf-8-*-
+#wc hightemp.txt
+
 
 import sys
 

@@ -19,3 +19,5 @@ for line in lines:
 
 for col1sets in col1_uniq:
     print col1sets.strip("\n")
+
+#cut -f 1 hightemp.txt |sort|uniq 

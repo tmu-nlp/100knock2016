@@ -1,4 +1,5 @@
 #!-*-coding:utf-8-*-
+#split -l 5 hightemp.txt
 
 
 num = int(input())

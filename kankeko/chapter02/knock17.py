@@ -1,4 +1,5 @@
 #!-*-coding:utf-8-*-
+#cut -f 1 hightemp.txt | sort | uniq
 
 list = list()
 set = set()
