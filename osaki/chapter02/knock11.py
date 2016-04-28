@@ -1,3 +1,5 @@
+#unix command "expand -t 1 hightemp.txt"
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 

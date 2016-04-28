@@ -1,3 +1,5 @@
+#cut -f 1 hightemp.txt | sort | uniq -c | sort -nr
+
 import sys
 from collections import defaultdict
 
@@ -12,6 +14,6 @@ for line in hightemp:
 for word in newline:
     words[word] += 1
 
-for key, value in sorted(words.items()):
+for key, value in reversed(sorted(words.items(),key=lambda x:x[1])):
     print(str(key) + ' ' + str(value))
 

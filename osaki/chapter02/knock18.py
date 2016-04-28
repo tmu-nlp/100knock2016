@@ -1,3 +1,5 @@
+#unix command "sort -k3,3 hightemp.txt"
+
 s=[]
 for line in open("hightemp.txt"):
     s=s+[line.split()]

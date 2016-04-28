@@ -1,3 +1,5 @@
+#split -l 4 hightemp.txt
+
 hightemp = open('hightemp.txt').readlines()
 N = int(input('ファイルをN分割: '))
 

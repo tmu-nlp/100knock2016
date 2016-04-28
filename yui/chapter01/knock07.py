@@ -8,10 +8,10 @@
 
 def temp(x, y, z):
     return "%s時の%sは%s" % (x, y, z)
+    #%s: 文字列として置換
 
 if __name__ == "__main__":
     x = 12
     y = "気温"
     z = 22.4
-    print temp(x, y, z)
-
+    print (temp(x, y, z))
