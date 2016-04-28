@@ -15,4 +15,5 @@ linux command
 
 cat hightemp.txt | cut -f1 >col1.txt
 cat hightemp.txt | cut -f2 >col2.txt
+
 '''
