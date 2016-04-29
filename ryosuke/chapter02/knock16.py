@@ -6,10 +6,12 @@ def split_list(l, num):
     base = size // num
     remaining = size % num
     outerl = list()
+    start = 0
     for i in range(num):
         additional = 1 if remaining > 0 else 0
         remaining -= 1
-        innerl = l[i:i + base + additional]
+        innerl = l[start:start + base + additional]
+        start += base + additional
         outerl.append(innerl)
     return outerl
 
