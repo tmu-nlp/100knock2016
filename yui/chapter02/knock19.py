@@ -24,3 +24,5 @@ with open("hightemp.txt", "r") as f:
 
     for s, f in sorted(sorted(freq_dict.items(), reverse=True), key=lambda x: x[1], reverse=True):
         print s, f
+
+#cut -f 1 hightemp.txt | sort | uniq -c | sort -nr

@@ -14,3 +14,6 @@ for line in  my_file:
 print("\n".join(line_list[-tail :]))
 
 # tail -2 hightemp.txt
+
+
+# list = [1] * 5 = [1,1,1,1,1]

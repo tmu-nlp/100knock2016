@@ -38,3 +38,5 @@ for words in lines:
 #     file_column2 = open("col2.txt", "a+")
 #     file_column2.write(second_column+"\n")
 #     file_column2.close()
+
+#cut -f 1,2 hightemp.txt

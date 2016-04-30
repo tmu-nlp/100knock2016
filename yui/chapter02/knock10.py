@@ -11,4 +11,7 @@ line_count = 0
 for line in file_to_be_counted:
     # +1 to line_count in file_to_be_counted
     line_count += 1
-print line_count
+print (line_count)
+
+#コマンド
+#wc hightemp.txt
