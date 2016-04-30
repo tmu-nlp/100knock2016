@@ -1,5 +1,5 @@
 /*
- * Chapter03, knock25
+ * Chapter03, knock26
  * Task: Remove Markup
  * Compile: mcs /reference:***.DLL ***.cs
  */
