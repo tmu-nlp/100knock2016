@@ -1,6 +1,6 @@
 /*
- * Chapter03, knock22
- * Task: Get line that include [[Category:****]] and print only ****
+ * Chapter03, knock24
+ * Task: get Media file information. e.g. [[File: *** ***.png| ** ** ]]
  */
 
 using System;
@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 
 
-public class Knock22 {
+public class Knock24 {
     static public void Main(string[] args) {
         ExtractTarget(args[0]);
     }
