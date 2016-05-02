@@ -12,6 +12,9 @@ def in_base_info(line):
     return in_base_info.bool
 
 
+def replace(s):
+    return re_replace.sub(lambda m: m.group('s2') if m.group('s1') is None else m.group('s1'), s)
+
 re_base_info = re.compile('\|(?P<key>.+?) = (?P<value>.+)')
 re_replace = re.compile('\'\'\'\'(?P<s1>.+?)\'\'\'\'|\'\'\'(?P<s2>.+?)\'\'\'')
 base_info = dict()
@@ -19,8 +22,8 @@ for line in getUKtext().split('\n'):
     if in_base_info(line):
         match = re_base_info.search(line)
         if match is not None:
-            key = re_replace.sub(lambda m: m.group('s2') if m.group('s1') is None else m.group('s1'), match.group('key'))
-            value = re_replace.sub(lambda m: m.group('s2') if m.group('s1') is None else m.group('s1'), match.group('value'))
+            key = replace(match.group('key'))
+            value = replace(match.group('value'))
             base_info[key] = value
 
 for k, v in base_info.items():
