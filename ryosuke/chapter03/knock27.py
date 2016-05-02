@@ -21,9 +21,7 @@ def replace(s):
                     return tmp
         return replace_n
     tmp = re_highlight.sub(sn(2), s)
-    print('hoge', tmp)
     tmp = re_inlink.sub(sn(3), tmp)
-    print('fuga', tmp)
     return tmp
 
 re_base_info = re.compile('\|(?P<key>.+?) = (?P<value>.+)')
