@@ -20,5 +20,5 @@ for line in getUKtext().split('\n'):
         if match is not None:
             base_info[match.group('key')] = match.group('value')
 
-for k, v in base_info.items():
+for k, v in sorted(base_info.items()):
     print(k, ':', v)

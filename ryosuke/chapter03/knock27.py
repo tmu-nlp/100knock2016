@@ -26,7 +26,7 @@ def replace(s):
 
 re_base_info = re.compile('\|(?P<key>.+?) = (?P<value>.+)')
 re_highlight = re.compile('\'\'\'\'(?P<s1>.+?)\'\'\'\'|\'\'\'(?P<s2>.+?)\'\'\'')
-re_inlink = re.compile('\[\[.+?#.+?\|(?P<s1>.+?)\]\]|\[\[.+?\|(?P<s2>.+?)\]\]|\[\[(?P<s3>.+?)\]\]')
+re_inlink = re.compile('\[\[[^\[\]]+?#[^\[\]]+?\|(?P<s1>[^\[\]]+?)\]\]|\[\[[^\[\]]+?\|(?P<s2>[^\[\]]+?)\]\]|\[\[(?P<s3>[^\[\]]+?)\]\]')
 base_info = dict()
 for line in getUKtext().split('\n'):
     if in_base_info(line):
@@ -36,5 +36,5 @@ for line in getUKtext().split('\n'):
             value = replace(match.group('value'))
             base_info[key] = value
 
-for k, v in base_info.items():
+for k, v in sorted(base_info.items()):
     print(k, ':', v)

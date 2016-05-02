@@ -26,5 +26,5 @@ for line in getUKtext().split('\n'):
             value = replace(match.group('value'))
             base_info[key] = value
 
-for k, v in base_info.items():
+for k, v in sorted(base_info.items()):
     print(k, ':', v)
