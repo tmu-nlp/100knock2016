@@ -15,7 +15,7 @@ def in_base_info(line):
 def replace(s):
     def sn(n):
         def replace_n(m):
-            for i in range(1, n):
+            for i in range(1, n + 1):
                 tmp = m.group('s{}'.format(i))
                 if tmp is not None:
                     return tmp
