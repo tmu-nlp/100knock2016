@@ -1,10 +1,11 @@
 # knock25.py
-import sys;
+import sys
 import re
 
 pattern = re.compile(r"^\{基礎情報 国\\n\|(.*)\\n}$")
 pattern2 = re.compile(r"^(.*) = (.*)$")
 lst = []
+dic = dict();
 # num = 0;
 for line in sys.stdin:
 	for (i, ch) in enumerate(line):
@@ -23,10 +24,12 @@ for line in sys.stdin:
 					# print (item)
 					# print (len(m2))
 					for item2 in m2:
-						print ("%s =|= %s" % (item2[0], item2[1]))
-	if(len(lst) == 0):
-		print ("finish")
-	else:
-		print ("unfinish")
+						dic[item2[0]] = item2[1]
+						# print ("%s =|= %s" % (item2[0], item2[1]))
 
-	# print (line)
+# print (dic)
+for key, value in dic.items():
+	print ("%s == %s" % (key, value))
+
+
+# python3 knock20.py | python3 knock25.py
