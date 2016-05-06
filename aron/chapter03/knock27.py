@@ -40,3 +40,6 @@ for line in sys.stdin:
 						# else:
 						# 	print (item2[1])
 						print (item2[0], "=", newStr2)
+
+
+# python3 knock20.py | python3 knock27.py
