@@ -21,11 +21,7 @@ with open("hightemp.txt", "r") as f:
 with open("hightemp.txt", "r") as f:
     for (number, line) in enumerate(f):
         if number < bunkatsu:
-            lines.append(line + '\n')
-            open("knock16-{}".format(count+1, "w").write(lines)
-            #open("knock16-{}".format(count+1), "a").write(line)
-            if number+1 == bunkatsu:
-                if number+1 != i:
-                    count += 1
-                    bunkatsu += bunkatsu_list[count]
-                    #print ("/n")    
+            open("knock16-{}".format(count+1), "a").write(line)
+            if number+1 == bunkatsu and number+1 != i:
+                count += 1
+                bunkatsu += bunkatsu_list[count]    
