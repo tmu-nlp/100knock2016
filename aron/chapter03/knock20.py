@@ -14,8 +14,8 @@ with open("jawiki-country.json") as f:
 	for line in f:
 		match = parten.search(line)
 		if(match):
-			newLine = line.replace(r"\n", u"\n")
-			print (newLine)
+			# newLine = line.replace(r"\n", u"\n")
+			print (line)
 
 # 普通に表示
 # print("普通に表示")
