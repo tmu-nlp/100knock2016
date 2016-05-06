@@ -12,10 +12,9 @@ for line in f:
 f.close()
 
 for word in uk["text"].split("\n"):
-    if re.search(r"\.jpg.+|\.JPG.+|\.svg.+", word):
-        word_list += re.findall(".+\.jpg|.+\.JPG|.+\.svg", word)
+    word_list += re.findall(u"File:(.*\....)\||ファイル:(.*\....)\|", word)
 
 for line in word_list:
-    print word_list.pop(0)
-            
+    print line[0] if len(line[0]) > len(line[1]) else line[1]
+
 f.close()
