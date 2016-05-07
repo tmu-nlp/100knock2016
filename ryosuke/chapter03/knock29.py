@@ -3,6 +3,21 @@ import re
 import requests
 
 
+def get_url(d):
+    if isinstance(d, list):
+        for item in d:
+            r = get_url(item)
+            if r is not None:
+                return r
+    elif isinstance(d, dict):
+        if 'url' in d:
+            return d['url']
+        for key in d:
+            r = get_url(d[key])
+            if r is not None:
+                return r
+
+
 def in_base_info(line):
     if not hasattr(in_base_info, 'bool'):
         in_base_info.bool = False
@@ -50,4 +65,6 @@ endpoint = 'https://en.wikipedia.org/w/api.php'
 params = {'action': 'query', 'prop': 'imageinfo', 'iiprop': 'url', 'format': 'json', 'titles': 'File:{}'.format(name)}
 r = requests.get(endpoint, params=params)
 d = r.json()
-print(d['query']['pages']['23473560']['imageinfo'][0]['url'])
+
+print(get_url(d))
+#print(d['query']['pages']['23473560']['imageinfo'][0]['url'])
