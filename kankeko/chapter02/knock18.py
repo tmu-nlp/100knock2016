@@ -1,5 +1,5 @@
 #!-*-coding:utf-8-*-
-
+#sort -rk3 hightemp.txt
 
 list = []
 answer = []

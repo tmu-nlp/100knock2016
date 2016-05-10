@@ -1,4 +1,5 @@
 #!-*-coding:utf-8-*-
+#tail -n N hightemp.txt
 
 
 num = input()

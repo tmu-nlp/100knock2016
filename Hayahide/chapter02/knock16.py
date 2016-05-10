@@ -13,7 +13,13 @@ for word in read:
 while count < N:
     ans = ""
     w_file = open("split%d.txt" % (count + 1), "w")
-    for i in range(int(line / N)):
+    if line % N != 0:
+        temp = int(line / N) + 1
+    else:
+        temp = line / N
+    for i in range(temp):
+        if len(lists) == 0:
+            break
         ans += lists.pop(0)
     w_file.write(ans)
     w_file.close()
