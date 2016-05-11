@@ -14,7 +14,10 @@ f.close()
 for word in uk["text"].split("\n"):
     word_list += re.findall(u"File:(.*\....)\||ファイル:(.*\....)\|", word)
 
-for line in word_list:
-    print (line[0]) if len(line[0]) > len(line[1]) else line[1]
+for line in word_list: 
+    if len(line[0]) > len(line[1]):
+        print (line[0])
+    else:
+        print (line[1])
 
 f.close()
