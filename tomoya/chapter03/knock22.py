@@ -1,8 +1,8 @@
 #coding: utf-8
-import sys
 import re
-f_in = open("UK.txt", "r").read()
+from knock20 import uktext
 repatter = re.compile(u"\[\[Category:(.*)\]\]")
-target = repatter.findall(f_in)
-if target:
-  print("\n".join(target))
+for line in uktext().split("\n"):
+  target = repatter.search(line)
+  if target != None:
+    print(target.group(1))
