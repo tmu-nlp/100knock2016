@@ -12,6 +12,6 @@ f.close()
 
 for word in uk["text"].split("\n"):
     if re.search("Category", word):
-        print word
+        print (word)
 
 

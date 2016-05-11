@@ -15,4 +15,4 @@ for word in uk["text"].split("\n"):
     category += re.findall("\[\[Category:(.*)\]\]", word)
 
 for line in category:
-    print line
+    print (line)

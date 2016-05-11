@@ -19,8 +19,8 @@ for line in uk["text"].split("\n"):
         flag = 0
     if flag and re.search(r".+ = .+", line): 
         word = (line.lstrip("|")).split(" = ")
-        ans[word[0].encode("utf-8")] = word[1].encode("utf-8")
+        ans[word[0]] = word[1]
 
 for title, text in ans.items():
-    print title, text
+    print (title, text)
 
