@@ -13,5 +13,5 @@ f.close()
 for word in uk["text"].split("\n"):
     if re.search(r"==.*==", word):
         count = word.count("=") / 2 - 1
-        print word.replace("=", "")
-        print count
+        print (word.replace("=", ""))
+        print (" Level: " + str(int(count)))

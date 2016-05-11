@@ -9,5 +9,5 @@ for line in f:
     if uk["title"] == u"イギリス":
         word = uk["text"].split("\n")
         for text in word:
-            print text
+            print (text)
 f.close()
