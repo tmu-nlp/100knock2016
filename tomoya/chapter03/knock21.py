@@ -1,8 +1,7 @@
 #coding: utf-8
-import sys
+from knock20 import uktext
 import re
-f_in = open("UK.txt", "r")
 repatter = re.compile(u".*Category.*")
-for line in f_in:
+for line in uktext().split("\n"):
   if repatter.search(line):
     print(line)
