@@ -1,36 +1,28 @@
-#!-*-coding:utf-8-*-
-
-
-import json
+import requests
 import re
 
+pattern = r"url"
+repatter = re.compile(pattern)
 
-a = 0
-pattern1 = u"基礎情報"
-pattern2 = u"}}"
-pattern3 = u"\|"
-mydict = {}
-f = open("jawiki-country.json", 'r')
-for line in f:
-    edict = json.loads(line)
-    if edict["title"] == u"イギリス":
-        kaneko = edict["text"].split("\n")
-        for text in kaneko:
-            if re.search(pattern1, text):
-                a = 1
-            if re.match(pattern2, text):
-                break
-            if a == 1 and re.match(pattern3, text):
-                mylist = text.split(" = ")
-                mylist[0] = mylist[0].replace("|","")
-                mylist[1] = mylist[1].replace("\"","")
-                mylist[1] = mylist[1].replace("]","")
-                mylist[1] = re.sub("\[.+?\|","",mylist[1])
-                mylist[1] = mylist[1].replace("}","")
-                mylist[1] = re.sub("\{.+\|","",mylist[1])
-                mylist[1] = mylist[1].replace("[[","")
-                mylist[1] = re.sub("<.+>","",mylist[1])
-                mylist[1] = re.sub(".+\|","",mylist[1])
-                mydict[mylist[0]] = mylist[1]
-        print(mydict.get("国旗画像",-1))
-                
+file_name = 'Flag_of_the_United_Kingdom.svg'
+endpoint = 'https://en.wikipedia.org/w/api.php'
+params = {'action': 'query', 'prop': 'imageinfo', 'iiprop': 'url', 'format': 'json', 'titles': 'File:{}'.format(file_name)}
+response = requests.get(endpoint, params=params)
+dic = response.json()
+
+for words in dic.values():
+    w = str(words)
+    a = re.search(r"'url': '(?P<myurl>.*?)'",w)
+    if a:
+        print(a.group("myurl"))
+    #for word in words.values():
+        #if isinstance(word,dict):
+            #for  in word.values():
+                #print (key, value)
+        #for w in a:
+            #print(type(w))
+            #print(w)
+    #words = words.search("\'url\'(?P<w>.*)?\,")
+    #print(w)
+    #print(words)
+    #print("\n")

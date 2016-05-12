@@ -1,14 +1,17 @@
 #coding: utf-8
-import sys
 import re
-f_in = open("UK.txt", "r").read()
-repatter1 = re.compile(u"{{基礎情報\s([^\n]*)\n(.*)\n}}", re.DOTALL)
-repatter2 = re.compile("'")
-repatter3 = re.compile(r"\[\[([^:]*?)\]\]")
-target = repatter1.findall(f_in)
-if target:
-  temp = {target[0][0]: target[0][1]}
-target = repatter2.sub("", temp["国"])
-target = repatter3.sub(r"\1", target)
-print(target)
+from knock20 import uktext
+from collections import defaultdict
 
+temp = re.compile("\|(.*)\s=\s(.*)")
+emphasis = re.compile("'")
+internallink = re.compile(r"\[\[(ファイル:)*(.*?)\]\]")
+template = dict()
+for line in uktext().split("\n"):
+  line = emphasis.sub("", line)
+  line = internallink.sub(r"\2", line)
+  target = temp.search(line)
+  if target:
+    template[target.group(1)] = target.group(2)
+for k, v in sorted(template.items(), key=lambda x: x[0]):
+  print("{} {}".format(k, v))
