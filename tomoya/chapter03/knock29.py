@@ -6,7 +6,7 @@ from collections import defaultdict
 
 temp = re.compile("\|(.*)\s=\s(.*)")
 emphasis = re.compile("'")
-internallink = re.compile(r"\[\[.*?:*\s*(.*?)\]\]")
+internallink = re.compile(r"\[\[(ファイル:)*(.*?)\]\]")
 others = re.compile("\*")
 template = dict()
 for line in uktext().split("\n"):

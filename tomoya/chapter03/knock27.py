@@ -5,13 +5,13 @@ from collections import defaultdict
 
 temp = re.compile("\|(.*)\s=\s(.*)")
 emphasis = re.compile("'")
-internallink = re.compile(r"\[\[.*?:*\s*(.*?)\]\]")
+internallink = re.compile(r"\[\[(ファイル:)*(.*?)\]\]")
 template = dict()
 for line in uktext().split("\n"):
   line = emphasis.sub("", line)
-  line = internallink.sub(r"\1", line)
+  line = internallink.sub(r"\2", line)
   target = temp.search(line)
   if target:
     template[target.group(1)] = target.group(2)
-for k, v in template.items():
+for k, v in sorted(template.items(), key=lambda x: x[0]):
   print("{} {}".format(k, v))
