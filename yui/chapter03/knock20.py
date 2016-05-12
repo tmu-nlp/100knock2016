@@ -21,9 +21,9 @@ f = open("jawiki-country.json", "r")
 for json_line in f.readlines():
     a = json.loads(json_line)
 
-    #タイトルがイギリスと同じだったらそれに該当する本文をエンコードしてプリンと。
-    if a["title"] == u"イギリス":
-        print a["text"].encode("utf-8")
+    #タイトルがイギリスと同じだったらそれに該当する本文をエンコードしてプリント。
+    if a["title"] == "イギリス":
+        print (a["text"])
         break
 
 # for a in Data:
