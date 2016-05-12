@@ -5,10 +5,9 @@ import re
 f = open("jawiki-country.json", "r")
 
 for line in f:
-    dic = json.loads(line)
-    if dic["title"] == u"イギリス":
-        word = dic["text"].split()
+    uk = json.loads(line)
+    if uk["title"] == u"イギリス":
+        word = uk["text"].split("\n")
         for text in word:
-            print text
-
+            print (text)
 f.close()

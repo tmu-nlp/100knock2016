@@ -5,9 +5,9 @@
 # 記事中でカテゴリ名を宣言している行を抽出せよ．
 
 import json
+import re
 
-f = open("jawiki-country.json", "r")
-
-for json_line in f.readlines():
-    a = json.loads(json_line)
-    print a.category(unichr)
+for line in open("wiki_uk.txt", "r"):
+    extract_category = re.search(r"Category", line)
+    if extract_category:
+        print(line)
