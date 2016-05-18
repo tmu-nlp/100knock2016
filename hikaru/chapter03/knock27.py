@@ -21,8 +21,10 @@ for (i, line) in enumerate(UK_list):
     if line == '}}':
         break
 
-for fi, va in UK_dict.items():
+for fi, va in sorted(UK_dict.items()):
     #va = va.replace("'''", '')
-    va = re.sub('\[\[|\]\]', '', va)
+    #va = re.sub('\[\[|\]\]', '', va)
+    re_va = re.compile('\[\[[^\[\]]+?\|(?P<s1>[^\[\]]+?)\]\]|\[\[(?P<s2>[^\[\]]+?)\]\]')
+    va = re_va.sub(lambda m: m.group('s2') if m.group('s1') is None else m.group('s1'), va)
     print ("field:{} value:{}".format(fi, va))
 #print (UK_dict.items())
