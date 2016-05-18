@@ -17,11 +17,8 @@ for line in neko_list:
     if line["base"] != "EOS":
         word_dict[line["base"]] += 1
 
-count = 0
 count_dict = defaultdict(int)
 for key, value in word_dict.items():
-    if count_dict[value] == 0:
-        count += 1
     count_dict[value] += 1
 
 rank_key = []
@@ -29,5 +26,5 @@ rank_value = []
 for key, value in sorted(word_dict.items()):
     rank_value.append(value)
 
-plt.hist(rank_value, bins = range(0, count))
+plt.hist(rank_value, bins = range(0, len(count_dict)))
 plt.show()
