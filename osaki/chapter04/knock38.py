@@ -31,13 +31,5 @@ for foo,bar in sorted(dh.items(),key=lambda x:x[0]):
     lhx+=[foo]
     lhy+=[bar]
 
-#for i in lh:
-#    dc[i]+=1
-#for foo,bar in dc.items():
-#    t=str(bar)
-#    print(foo),
-#    print(t)
-#print(lhx)
-#print(lhy)
 plt.bar(lhx,lhy)
 plt.show()
