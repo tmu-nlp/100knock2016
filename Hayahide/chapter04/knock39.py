@@ -17,17 +17,13 @@ for line in neko_list:
     if line["base"] != "EOS":
         word_dict[line["base"]] += 1
 
-count_dict = defaultdict(int)
-for key, value in word_dict.items():
-    count_dict[value] += 1
-
 rank_key = []
 rank_value = []
-for key, value in sorted(count_dict.items()):
+for key, value in sorted(word_dict.items(), key = lambda x:x[1], reverse = True):
     rank_key.append(key)
     rank_value.append(value)
 
 plt.xscale("log")
 plt.yscale("log")
-plt.plot(range(len(rank_value)), rank_value)
+plt.plot(range(len(rank_key)), rank_value)
 plt.show()
