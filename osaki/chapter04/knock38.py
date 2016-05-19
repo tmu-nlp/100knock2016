@@ -10,7 +10,7 @@ dc=defaultdict(lambda:0)
 l=list()
 lhx=list()
 lhy=list()
-c=[]
+c=0
 
 for line in open("neko.txt.mecab","r"):
     if line == "EOS\n":
@@ -30,6 +30,6 @@ for foo,bar in dw.items():
 for foo,bar in sorted(dh.items(),key=lambda x:x[0]):
     lhx+=[foo]
     lhy+=[bar]
-
+plt.figure(figsize=(16,6))
 plt.bar(lhx,lhy)
 plt.show()
