@@ -15,6 +15,5 @@ for line in neko_mecab():
 for key, value in reversed(sorted(words_mecab.items(), key=lambda x:x[1])):
     l.append(value)
     n.append(key)
-print(l)
-plt.hist(l,30)
+plt.hist(l,50,range=(1,50))
 plt.show()
