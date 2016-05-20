@@ -4,7 +4,8 @@
 import knock30
 # import numpy as np
 import matplotlib.pyplot as plt
-import numpy as np
+from matplotlib.font_manager import FontProperties
+
 
 from collections import defaultdict
 ktsList = knock30.getMorphology("neko.txt.mecab")
@@ -14,15 +15,23 @@ freqDic = defaultdict(lambda :0 )
 for item in ktsList:
 	freqDic[item["surface"]] += 1
 
-X = []
-X_= []#["a","a","a","a","a","a","a","a","a","a"]
-for i in range(10):
-	X.append(i)
-Y = []
-for key, value  in sorted(freqDic.items(), key=lambda x:-x[1], ):
-	X_.append(key)
-	Y.append(value)
+X = [i + 1 for i in range(10)]
+# print (X)
+X_label= []#["a","a","a","a","a","a","a","a","a","a"]
 
-plt.bar(X, Y[0:10])
-plt.xticks(X, X_[0:10]) # 目盛りを数字からkeyに書き換える
+Y = []
+count = 0
+for key, value  in sorted(freqDic.items(), key=lambda x:-x[1]):
+	if(key == "EOS"):
+		continue
+	X_label.append(key)
+	#print ("%s, %d" % (key, value))
+	Y.append(value)
+	count += 1
+	if count >=10:
+		break;
+fp = FontProperties(fname='/Library/Fonts/OsakaMono.ttf')
+# print (X, Y)
+plt.bar(X, Y, align = 'center')
+plt.xticks(X, X_label, fontproperties=fp)
 plt.show()
