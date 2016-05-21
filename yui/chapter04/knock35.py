@@ -2,6 +2,7 @@
 
 # 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ．
 
+# aizhan ver.
 
 from knock30 import get_sentences
 

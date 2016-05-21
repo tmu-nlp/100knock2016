@@ -4,7 +4,7 @@
 
 from knock30 import get_sentences
 from collections import Counter
-import matplotlib.pyplot as plt # ImportError: No module named 'matplotlib'
+import matplotlib.pyplot as plt
 
 vocab = Counter()
 for sentence in get_sentences():
