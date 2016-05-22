@@ -1,6 +1,8 @@
 #-*- coding:utf-8 -*-
 import re
+from matplotlib.font_manager import FontProperties
 import matplotlib.pyplot as plt
+fp=FontProperties(fname='/Library/Fonts/Yu Gothic Bold.otf')
 from collections import defaultdict
 d=defaultdict(lambda:0)
 dw=defaultdict(lambda:0)
@@ -32,5 +34,5 @@ for foo,bar in sorted(dw.items(),key=lambda x:x[1],reverse=True):
         break
 
 plt.bar(x,y)
-plt.xticks(x,label)
+plt.xticks(x,label,fontproperties=fp)
 plt.show()
