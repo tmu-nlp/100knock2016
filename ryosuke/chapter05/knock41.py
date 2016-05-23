@@ -60,7 +60,7 @@ class Chunk:
             dst = next_chunk.dst
         return path
 
-    def get_path_to_id(self, sentence, target_id, form=lambda ch: ch.join_surface_wo_symbol()):
+    def get_path_to_id(self, sentence, target_id, form=lambda ch: ch.join_surface_wo_symbol(), include_id=True):
         path = [form(self)]
         dst = self.dst
         current = self.id
@@ -69,6 +69,8 @@ class Chunk:
             path.append(form(next_chunk))
             dst = next_chunk.dst
             current = next_chunk.id
+        if not include_id:
+            path.pop(-1)
         return path
 
     def replace_noun(self, name):
