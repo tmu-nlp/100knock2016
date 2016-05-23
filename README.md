@@ -1,6 +1,6 @@
 # 100knock2016
 
-教材: http://www.cl.ecei.tohoku.ac.jp/nlp100/
+教材: http://www.cl.ecei.tohoku.ac.jp/nlp100/  
 HP: https://sites.google.com/site/nishitokyonlp/groups/programming-drill
 
 
