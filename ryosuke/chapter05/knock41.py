@@ -28,6 +28,9 @@ class Chunk:
     def join_surface(self):
         return ''.join(m.surface for m in self.morphs)
 
+    def join_surface_wo_symbol(self):
+        return ''.join(m.surface for m in self.morphs if m.pos != '記号')
+
 
 def get_sentences():
     re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
