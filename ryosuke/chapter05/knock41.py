@@ -38,7 +38,7 @@ class Chunk:
         return any(m.pos == '動詞' for m in self.morphs)
 
     def in_particle(self):
-        return any(m.pos == '動詞' for m in self.morphs)
+        return any(m.pos == '助詞' for m in self.morphs)
 
     def get_most_left_verb(self, form=lambda x: x.base):
         if self.in_verb():
@@ -47,6 +47,9 @@ class Chunk:
     def get_most_right_particle(self):
         if self.in_particle():
             return [m.surface for m in self.morphs if m.pos == '助詞'][0]
+
+    def is_sahen_wo(self):
+        return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
 
 
 def get_sentences():
