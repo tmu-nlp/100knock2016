@@ -10,5 +10,6 @@ for sentence in get_sentences():
                 src_chunk = sentence[src_id]
                 candidate += src_chunk.get_all_particles()
             if len(candidate) != 0:
+                verb = chunk.get_most_left_verb()
                 particles = ' '.join(sorted(set(candidate)))
-                print('{}\t{}'.format(chunk.get_most_left_verb(), particles))
+                print('{}\t{}'.format(verb, particles))
