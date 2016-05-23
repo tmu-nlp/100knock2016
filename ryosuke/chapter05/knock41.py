@@ -37,6 +37,12 @@ class Chunk:
     def in_verb(self):
         return any(m.pos == '動詞' for m in self.morphs)
 
+    def get_most_left_verb(self, form=lambda x: x.base):
+        if self.in_verb():
+            return [form(m) for m in self.morphs if m.pos == '動詞'][0]
+
+    def get_all_particles(self):
+        return [m.surface for m in self.morphs if m.pos == '助詞']
 
 def get_sentences():
     re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
