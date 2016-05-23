@@ -51,6 +51,15 @@ class Chunk:
     def is_sahen_wo(self):
         return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
 
+    def get_path_to_root(self, sentence):
+        dst = self.dst
+        path = [self.join_surface_wo_symbol()]
+        while dst != -1:
+            next_chunk = sentence[dst]
+            path.append(next_chunk.join_surface_wo_symbol())
+            dst = next_chunk.dst
+        return path
+
 
 def get_sentences():
     re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
