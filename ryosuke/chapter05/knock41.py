@@ -40,7 +40,7 @@ class Chunk:
     def in_particle(self):
         return any(m.pos == '助詞' for m in self.morphs)
 
-    def get_most_left_verb(self, form=lambda x: x.base):
+    def get_most_left_verb(self, form=lambda m: m.base):
         if self.in_verb():
             return [form(m) for m in self.morphs if m.pos == '動詞'][0]
 
@@ -51,12 +51,12 @@ class Chunk:
     def is_sahen_wo(self):
         return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
 
-    def get_path_to_root(self, sentence):
+    def get_path_to_root(self, sentence, form=lambda ch: ch.join_surface_wo_symbol()):
         dst = self.dst
-        path = [self.join_surface_wo_symbol()]
+        path = [form(self)]
         while dst != -1:
             next_chunk = sentence[dst]
-            path.append(next_chunk.join_surface_wo_symbol())
+            path.append(form(next_chunk))
             dst = next_chunk.dst
         return path
 
