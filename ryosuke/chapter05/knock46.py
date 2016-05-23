@@ -7,9 +7,9 @@ for sentence in get_sentences():
             candidate = list()
             for src_id in chunk.srcs:
                 src_chunk = sentence[src_id]
-                new_candidate = src_chunk.get_all_particles()
-                if len(new_candidate) != 0:
-                    candidate += [(part, src_chunk.join_surface()) for part in new_candidate]
+                part = src_chunk.get_most_right_particle()
+                if part is not None:
+                    candidate.append((part, src_chunk.join_surface()))
             if len(candidate) != 0:
                 verb = chunk.get_most_left_verb()
                 particles = ' '.join(part for part, ch in sorted(set(candidate)))
