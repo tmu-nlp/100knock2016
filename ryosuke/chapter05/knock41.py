@@ -31,6 +31,12 @@ class Chunk:
     def join_surface_wo_symbol(self):
         return ''.join(m.surface for m in self.morphs if m.pos != '記号')
 
+    def in_noun(self):
+        return any(m.pos == '名詞' for m in self.morphs)
+
+    def in_verb(self):
+        return any(m.pos == '動詞' for m in self.morphs)
+
 
 def get_sentences():
     re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
