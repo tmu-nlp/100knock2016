@@ -4,7 +4,7 @@ for sentence in get_sentences():
     for chunk in sentence:
         if chunk.dst != -1:
             tgt_chunk = sentence[chunk.dst]
-            if not chunk.in_noun() or not tgt_chunk.in_verb():
+            if not chunk.has_noun() or not tgt_chunk.has_verb():
                 continue
             src = chunk.join_surface_wo_symbol()
             dst = tgt_chunk.join_surface_wo_symbol()

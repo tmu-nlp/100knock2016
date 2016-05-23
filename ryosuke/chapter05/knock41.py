@@ -31,34 +31,48 @@ class Chunk:
     def join_surface_wo_symbol(self):
         return ''.join(m.surface for m in self.morphs if m.pos != '記号')
 
-    def in_noun(self):
+    def has_noun(self):
         return any(m.pos == '名詞' for m in self.morphs)
 
-    def in_verb(self):
+    def has_verb(self):
         return any(m.pos == '動詞' for m in self.morphs)
 
-    def in_particle(self):
+    def has_particle(self):
         return any(m.pos == '助詞' for m in self.morphs)
 
     def get_most_left_verb(self, form=lambda m: m.base):
-        if self.in_verb():
+        if self.has_verb():
             return [form(m) for m in self.morphs if m.pos == '動詞'][0]
 
     def get_most_right_particle(self):
-        if self.in_particle():
+        if self.has_particle():
             return [m.surface for m in self.morphs if m.pos == '助詞'][0]
 
     def is_sahen_wo(self):
         return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
 
     def get_path_to_root(self, sentence, form=lambda ch: ch.join_surface_wo_symbol()):
-        dst = self.dst
         path = [form(self)]
+        dst = self.dst
         while dst != -1:
             next_chunk = sentence[dst]
             path.append(form(next_chunk))
             dst = next_chunk.dst
         return path
+
+    def get_path_to_id(self, sentence, target_id, form=lambda ch: ch.join_surface_wo_symbol()):
+        path = [form(self)]
+        dst = self.dst
+        current = self.id
+        while current != target_id:
+            next_chunk = sentence[dst]
+            path.append(form(next_chunk))
+            dst = next_chunk.dst
+            current = next_chunk.id
+        return path
+
+    def replace_noun(self, name):
+        return ''.join(m.surface if m.pos != '名詞' else name for m in self.morphs if m.pos != '記号')
 
 
 def get_sentences():

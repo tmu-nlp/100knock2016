@@ -3,7 +3,7 @@ from knock41 import get_sentences
 
 for sentence in get_sentences():
     for chunk in sentence:
-        if chunk.in_verb():
+        if chunk.has_verb():
             candidate = list()
             for src_id in chunk.srcs:
                 src_chunk = sentence[src_id]
