@@ -1,9 +1,12 @@
-# knock25.py
+# knock27.py
 import sys
 import re
 
 pattern = re.compile(r"^\{基礎情報 国\\n\|(.*)\\n}$")
 pattern2 = re.compile(r"^(.*) = (.*)$")
+# re3 = re.compile(r"\[\[([\[\]\|]*)\|([\[\]\|]*)\]\]")
+re3 = re.compile(r"\[\[[^\[\]]*\|([^\[\]]*)\]\]")
+re4 = re.compile(r"\[\[([^\[\]]*)\]\]")
 lst = []
 dic = dict();
 # num = 0;
@@ -27,9 +30,16 @@ for line in sys.stdin:
 						dic[item2[0]] = item2[1]
 						# print ("%s =|= %s" % (item2[0], item2[1]))
 
-# print (dic)
-for key, value in dic.items():
-	print ("%s == %s" % (key, value))
 
 
-# python3 knock20.py | python3 knock25.py
+						newStr1 = re3.sub(r"\1", item2[1])
+						newStr2 = re4.sub(r"\1", newStr1)
+						# if m3:
+						# 	for i, mm in enumerate(m3) :
+						# 		print (i , mm)
+						# else:
+						# 	print (item2[1])
+						print (item2[0], "=", newStr2)
+
+
+# python3 knock20.py | python3 knock27.py

@@ -4,7 +4,7 @@
 
 from knock30 import get_sentences
 from collections import Counter
-import matplotlib.pyplot as plt # ImportError: No module named 'matplotlib'
+import matplotlib.pyplot as plt
 
 vocab = Counter()
 for sentence in get_sentences():
@@ -12,5 +12,5 @@ for sentence in get_sentences():
 
 names, freqs = zip(*vocab.most_common())
 
-plt.hist(freqs, bins=freqs[0])
+plt.hist(freqs, bins=len(set(freqs))) # binsは縦棒の数
 plt.show()
