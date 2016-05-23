@@ -25,6 +25,9 @@ class Chunk:
     def __str__(self):
         return 'id: {}, dst: {}, srcs: {}'.format(str(self.id), str(self.dst), ','.join(str(i) for i in self.srcs))
 
+    def join_surface(self):
+        return ''.join(m.surface for m in self.morphs)
+
 
 def get_sentences():
     re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
