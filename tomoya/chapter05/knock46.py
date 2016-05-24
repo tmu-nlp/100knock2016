@@ -11,6 +11,8 @@ for x in sentence[:]:
         if y.isPos("動詞") and y.srcs != []:
           print(y.morphs[0].base, end = "\t")
           for z in y.srcs:
+            if len(x[int(z)].morphs) < 1:
+              continue
             print(x[int(z)].morphs[-1].base, end = " ")
           print("\t", end  = "")
           for z in y.srcs:
