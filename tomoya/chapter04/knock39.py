@@ -17,12 +17,12 @@ count = defaultdict(int)
 for sentence in sentences:
   for word in sentence:
     count[word["surface"]] += 1
-x = []
+y = []
 for k, v in sorted(count.items(), key = lambda x:x[1], reverse = True):
-  x.append(v)
+  y.append(v)
 plt.xscale("log")
 plt.yscale("log")
-y = range(1,len(x)+1)
+x = range(1,len(y)+1)
 plt.plot(x, y)
 plt.show()
  

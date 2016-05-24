@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# 単語の出現頻度順位を横軸，その出現頻度を縦軸として，両対数グラフをプロットせよ．
+
 from knock30 import get_sentences
 from collections import Counter
 import matplotlib.pyplot as plt
@@ -8,5 +12,7 @@ for sentence in get_sentences():
 
 names, freqs = zip(*vocab.most_common())
 
-plt.hist(freqs, bins=len(set(freqs)))
+plt.bar(range(1, len(names)+1), freqs)
+plt.xscale('log')
+plt.yscale('log')
 plt.show()
