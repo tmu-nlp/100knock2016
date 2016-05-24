@@ -59,17 +59,33 @@ def get_chunk_sentences():
 
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
+    #sentence = sentences[5]
     for sentence in sentences:
         chunk_list = list()
+        sahenmorph_list = list()
         for chunk in sentence:
             chunk_list.append(chunk)
             for morph in chunk.morphs:
-                if morph.pos == '動詞':
-                    ans = morph.base + '\t'
-                    #print (morph.base)
-                    for src in chunk.srcs:
-                        if chunk_list[src].morphs[-1].pos == '助詞':
-                            ans += chunk_list[src].morphs[-1].base + ' '
-                            #print (chunk_list[src].morphs[-1].base)
-                    print (ans)
-                    break
+                if len(sahenmorph_list) == 1:
+                    if morph.surface == 'を':
+                        sahenmorph_list.append(morph.surface)
+                        sahenmorph = ''.join(sahenmorph_list)
+                    else:
+                        sahenmorph_list = list()
+                if morph.pos1 == 'サ変接続':
+                    sahenmorph_list.append(morph.surface)
+
+                if len(sahenmorph_list) == 2:
+                    if morph.pos == '動詞':
+                        ans = sahenmorph + morph.base + '\t'
+                        ans2 = ''
+                        sahenmorph_list = list()
+                        for src in chunk.srcs:
+                            if chunk_list[src].morphs[-1].pos == '助詞':
+                                ans += chunk_list[src].morphs[-1].base + ' '
+                                #print (chunk_list[src].morphs[-1].base)
+                                for morph2 in chunk_list[src].morphs:
+                                    ans2 += morph2.base
+                                ans2 += ' '
+                        print (ans + '\t' + ans2)
+                        break
