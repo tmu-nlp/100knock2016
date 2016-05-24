@@ -16,6 +16,8 @@ x = range(len(names))
 
 
 plt.bar(x, freqs)
-fp = FontProperties(fname='/Library/Fonts/ヒラギノ丸ゴ ProN W4.ttc')
-plt.xticks([nx + 0.5 for nx in x], names, fontproperties=fp)
+fp = FontProperties(fname='/Library/Fonts/ヒラギノ角ゴ Pro W3.otf')
+
+# 位置の調整
+plt.xticks([nx + 0.5 for nx in x], names, fontproperties=fpd)
 plt.show()
