@@ -3,7 +3,6 @@
 def mkChunkclass(morphlist):
     class Chunk:
         def __init__(self,morph,dst,srcs):
-#        def __init__(self,dst,srcs):
             self.morph=morph
             self.dst=dst
             self.srcs=srcs
@@ -25,7 +24,6 @@ def mkChunkclass(morphlist):
         elif line.startswith("*")==True:
             if c1+c2!=0:
                 chunk=Chunk(morph,dst,srcs)
-#                chunk=Chunk(dst,srcs)
                 l+=[chunk]
                 morph=[]
             dst=line.split(" ")[2]
