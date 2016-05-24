@@ -66,10 +66,14 @@ if __name__ == "__main__":
             for morph in chunk.morphs:
                 if morph.pos == '動詞':
                     ans = morph.base + '\t'
+                    ans2 = ''
                     #print (morph.base)
                     for src in chunk.srcs:
                         if chunk_list[src].morphs[-1].pos == '助詞':
                             ans += chunk_list[src].morphs[-1].base + ' '
                             #print (chunk_list[src].morphs[-1].base)
-                    print (ans)
+                            for morph2 in chunk_list[src].morphs:
+                                ans2 += morph2.base
+                            ans2 += ' '
+                    print (ans + '\t' + ans2)
                     break
