@@ -35,11 +35,11 @@ def mkChunkclass(morphlist):
             c2+=1
     return(la)
 
-from knock40 import mkMorphclass
-
-c=0
-for l in mkChunkclass(mkMorphclass()):
-    c+=1
-    if c==8:
-        for ch in l:
-            print(ch)
+if __name__=="__main__":
+    from knock40 import mkMorphclass
+    c=0
+    for l in mkChunkclass(mkMorphclass()):
+        c+=1
+        if c==8:
+            for ch in l:
+                print(ch)
