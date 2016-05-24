@@ -22,12 +22,12 @@ def mkChunkclass(morphlist):
             l=list()
             c2=0
         elif line.startswith("*")==True:
+            srcs=line.split(" ")[1]
+            dst=line.split(" ")[2].strip("D")
             if c1+c2!=0:
                 chunk=Chunk(morph,dst,srcs)
                 l+=[chunk]
                 morph=[]
-            dst=line.split(" ")[2]
-            scrs=line.split(" ")[1]
         else:
             morph+=[morphlist[c1][c2]]
             c2+=1
@@ -40,4 +40,4 @@ if __name__=="__main__":
         c+=1
         if c==8:
             for ch in l:
-                print(ch)
+                print(ch.dst+" "+ch.srcs)
