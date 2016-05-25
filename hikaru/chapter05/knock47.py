@@ -59,17 +59,49 @@ def get_chunk_sentences():
 
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
+    p_list = list()
+    pf_list = list()
+    p_dic = {}
+    x = {}
+    #sentence = sentences[5]
     for sentence in sentences:
         chunk_list = list()
+        sahenmorph_list = list()
         for chunk in sentence:
             chunk_list.append(chunk)
             for morph in chunk.morphs:
-                if morph.pos == '動詞':
-                    ans = morph.base + '\t'
-                    #print (morph.base)
-                    for src in chunk.srcs:
-                        if chunk_list[src].morphs[-1].pos == '助詞':
-                            ans += chunk_list[src].morphs[-1].base + ' '
-                            #print (chunk_list[src].morphs[-1].base)
-                    print (ans)
-                    break
+                if len(sahenmorph_list) == 1:
+                    if morph.surface == 'を':
+                        sahenmorph_list.append(morph.surface)
+                        sahenmorph = ''.join(sahenmorph_list)
+                    else:
+                        sahenmorph_list = list()
+                if morph.pos1 == 'サ変接続':
+                    sahenmorph_list.append(morph.surface)
+
+                if len(sahenmorph_list) == 2:
+                    if morph.pos == '動詞':
+                        v = sahenmorph + morph.base + '\t'
+                        sahenmorph_list = list()
+                        for src in chunk.srcs:
+                            if chunk_list[src].morphs[-1].pos == '助詞' and chunk_list[src].morphs[-1].base != 'を':
+                                p_f = ''
+                                p_list.append(chunk_list[src].morphs[-1].base)
+                                for morph2 in chunk_list[src].morphs:
+                                    p_f += morph2.surface
+                                pf_list.append(p_f)
+                    if len(p_list) != 0:
+                        for p, pf in zip(p_list, pf_list):
+                            p_dic[p] = pf
+                        keys, values = list(zip(*sorted(p_dic.items())))
+                        #for key, value in sorted(p_dic.items()):
+                            #x[key] = value
+                        #ans = ' '.join(sorted(p_list)) + '\t' + ' '.join(sorted(pf_list, key=lambda x: x[::-1]))
+                        #ans = ' '.join(p_dic.keys()) + '\t' + ' '.join(p_dic.values())
+                        ans = ' '.join(keys) + '\t' + ' '.join(values)
+                        p_list = list()
+                        pf_list = list()
+                        p_dic = {}
+                        x = {}
+                        print (v + ans)
+                        break

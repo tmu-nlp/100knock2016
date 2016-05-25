@@ -23,7 +23,14 @@ def getChunk():
         elif (morph == "base"):
           temp += x.base
       return temp.strip("。").strip("、")
-
+    '''
+    def morph_reg(self):
+      morph = list()
+      for x in self.morphs:
+        if x.pos != "記号":
+          morph.append(x)
+      return morph
+   '''
 
   morph_list = []
   chunks = []
@@ -34,6 +41,8 @@ def getChunk():
   for line in open("neko.txt.cabocha"):
     if line[0] != "*" and "EOS" not in line:
       words = re.split("\t|,", line)
+      if words[1] == "記号":
+        continue
       morph_obj = Morph(words[0], words[7], words[1], words[2])
       morphs.append(morph_obj)
       morph_list.append(morph_obj)

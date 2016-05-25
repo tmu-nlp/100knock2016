@@ -59,17 +59,33 @@ def get_chunk_sentences():
 
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
+    ans_list = list()
+    p_dic = {}
+    p_list = list()
+    pf_list = list()
     for sentence in sentences:
         chunk_list = list()
         for chunk in sentence:
             chunk_list.append(chunk)
             for morph in chunk.morphs:
-                if morph.pos == '動詞':
-                    ans = morph.base + '\t'
-                    #print (morph.base)
-                    for src in chunk.srcs:
-                        if chunk_list[src].morphs[-1].pos == '助詞':
-                            ans += chunk_list[src].morphs[-1].base + ' '
-                            #print (chunk_list[src].morphs[-1].base)
-                    print (ans)
-                    break
+                if len(chunk.srcs) != 0:
+                    if morph.pos == '動詞':
+                        v = morph.base + '\t'
+                        for src in chunk.srcs:
+                            if chunk_list[src].morphs[-1].pos == '助詞': #sentenceでいいじゃん
+                                p_f = ''
+                                p_list.append(chunk_list[src].morphs[-1].base)
+                                for morph2 in chunk_list[src].morphs:
+                                    p_f += morph2.surface
+                                pf_list.append(p_f)
+                        if len(p_list) != 0:
+                            for p, pf in zip(p_list, pf_list):
+                                p_dic[p] = pf
+                            keys, values = list(zip(*sorted(p_dic.items())))
+                            ans = ' '.join(keys) + '\t' + ' '.join(values)
+                            p_list = list()
+                            pf_list = list()
+                            p_dic = {}
+                            print (v + ans)
+                        break
+
