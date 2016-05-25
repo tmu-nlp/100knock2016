@@ -57,16 +57,27 @@ def get_chunk_sentences():
     return sentences
 
 
+from graphviz import Digraph
+dot = Digraph(format = 'png')
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
     ans = ''
-    for sentence in sentences:
+    ans2 = ''
+    i = 0
+    for sentence in sentences[:9]:
         for chunk in sentence:
             if chunk.dst != -1:
                 ans = ''.join(m.surface for m in chunk.morphs)
-                #for morph in sentence[chunk.dst].morphs:
                 ans2 = ''.join(m.surface for m in sentence[chunk.dst].morphs)
                 ans = ans.strip()
                 if len(ans) != 0:
-                    print (ans.strip('、').strip('。') + '\t' + ans2.strip('。').strip('、'))
-                    ans = ''
+                    ans = ans.strip('、').strip('。')
+                    ans2 = ans2.strip('、').strip('。')
+            if len(ans) != 0:
+                dot.node('{}'.format(i), ans)
+                #dot.node('{}'.format(i+1), ans2)
+                dot.edge('{}'.format(i), ans2)
+                #dot.edge(ans, ans2)
+                ans = ''
+                i += 1
+    dot.render('tree')
