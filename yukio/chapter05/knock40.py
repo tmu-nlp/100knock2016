@@ -21,7 +21,6 @@ def read_cabocha():
     for line in open("neko.txt.cabocha", "r"):
         line = line.strip("\n")
         if line == "EOS":
-            if sentences[i] != []:
                 i += 1
                 sentences.append([])
         elif line[0] != "*":

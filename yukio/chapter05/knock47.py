@@ -33,3 +33,6 @@ if __name__ == "__main__":
                         f.write("{}\t{}\t{}\n".format(predicate1 + predicate2, " ".join(cases), " ".join(chunks)))
                     break
     f.close()
+
+#cut -f1 function_verb_case_flame.txt | sort | uniq -c | sort -r
+#cut -f1,2 function_verb_case_flame.txt | sort | uniq -c | sort -r
