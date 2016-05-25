@@ -20,3 +20,6 @@ if __name__ == "__main__":
                         f.write("{}\t{}\n".format(predicate, " ".join(sorted(cases))))
                     break
     f.close()
+
+#cat verb_case_pattern.txt | sort | uniq -c | sort -r
+#grep -e"^する\t" -e"^見る\t" -e"^与える\t" verb_case_pattern.txt | sort | uniq -c | sort -r
