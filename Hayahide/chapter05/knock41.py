@@ -43,8 +43,7 @@ def Caboching():
             chunk_list.append(chunk_class)
 
         elif line != "EOS\n":
-            temp = chunk_list[len(chunk_list) - 1]
-            temp.append_list(temp.morphs, Morph(line))
+            chunk_list[-1].append_list(chunk_list[-1].morphs, Morph(line))
 
     return neko_list
 

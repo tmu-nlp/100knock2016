@@ -1,8 +1,12 @@
 #-*- coding:utf-8 -*-
+
+#command "dot -Tgif dst.dot -o dst.gif"
+
 from knock40 import mkMorphclass
 from knock41 import mkChunkclass
 import sys
 
+cl=0
 c=0
 s=""
 t=""
@@ -16,10 +20,12 @@ for line in mkChunkclass(mkMorphclass()):
                 s+=word.surface
                 dst=phrase.dst
         for phrase_d in line:
-            if int(phrase_d.srcs)==d:
+            if cl==d:
                 for word in phrase_d.morph:
                     if word.pos!="記号":
                          t+=word.surface
+            cl+=1
+        cl=0
         if dst!="-1":
             dot+="\t"+'"'+s+'"'+" -> "+'"'+t+'"'+";\n"
         s=""
