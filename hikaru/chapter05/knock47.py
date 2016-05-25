@@ -59,6 +59,9 @@ def get_chunk_sentences():
 
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
+    p_list = list()
+    pf_list = list()
+    p_dic = {}
     #sentence = sentences[5]
     for sentence in sentences:
         chunk_list = list()
@@ -77,15 +80,23 @@ if __name__ == "__main__":
 
                 if len(sahenmorph_list) == 2:
                     if morph.pos == '動詞':
-                        ans = sahenmorph + morph.base + '\t'
-                        ans2 = ''
+                        v = sahenmorph + morph.base + '\t'
                         sahenmorph_list = list()
                         for src in chunk.srcs:
-                            if chunk_list[src].morphs[-1].pos == '助詞':
-                                ans += chunk_list[src].morphs[-1].base + ' '
-                                #print (chunk_list[src].morphs[-1].base)
+                            if chunk_list[src].morphs[-1].pos == '助詞' and chunk_list[src].morphs[-1].base != 'を':
+                                p_f = ''
+                                p_list.append(chunk_list[src].morphs[-1].base)
                                 for morph2 in chunk_list[src].morphs:
-                                    ans2 += morph2.base
-                                ans2 += ' '
-                        print (ans + '\t' + ans2)
+                                    p_f += morph2.surface
+                                pf_list.append(p_f)
+                    if len(p_list) != 0:
+                        for p, pf in zip(p_list, pf_list):
+                            p_dic[p] = pf
+                        sorted(p_dic.items())
+                        #ans = ' '.join(sorted(p_list)) + '\t' + ' '.join(sorted(pf_list, key=lambda x: x[::-1]))
+                        ans = ' '.join(p_dic.keys()) + '\t' + ' '.join(p_dic.values())
+                        p_list = list()
+                        pf_list = list()
+                        p_dic = {}
+                        print (v + ans)
                         break
