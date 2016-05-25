@@ -18,7 +18,5 @@ for line in neko_list:
 
         if chunk.dst != -1:
             ans2 = chunk_merge(line[chunk.dst])
-        else:
-            ans2 = ""
-        print (ans1 + "\t" + ans2)
+            print (ans1 + "\t" + ans2)
 
