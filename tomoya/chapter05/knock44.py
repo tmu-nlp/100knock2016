@@ -12,6 +12,6 @@ sentence = getChunk()
 for x in sentence[:10]:
   for y in x:
     if y.dst != "-1":
-        G.edge(y.morph_str(), x[int(y.dst)].morph_str())
+        G.edge(y.morph_str("surface"), x[int(y.dst)].morph_str("surface"))
 print(G)
 G.render('tree')

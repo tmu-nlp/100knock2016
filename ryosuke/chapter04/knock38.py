@@ -8,5 +8,5 @@ for sentence in get_sentences():
 
 names, freqs = zip(*vocab.most_common())
 
-plt.hist(freqs, bins=freqs[0])
+plt.hist(freqs, bins=len(set(freqs)))
 plt.show()
