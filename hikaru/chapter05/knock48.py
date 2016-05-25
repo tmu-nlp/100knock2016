@@ -59,49 +59,37 @@ def get_chunk_sentences():
 
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
-    p_list = list()
-    pf_list = list()
-    p_dic = {}
-    x = {}
-    #sentence = sentences[5]
+    ans_list = list()
+    st_chunk = ''
+    st_chunk2 = ''
     for sentence in sentences:
         chunk_list = list()
-        sahenmorph_list = list()
         for chunk in sentence:
             chunk_list.append(chunk)
+            n_flag = 0
             for morph in chunk.morphs:
-                if len(sahenmorph_list) == 1:
-                    if morph.surface == 'を':
-                        sahenmorph_list.append(morph.surface)
-                        sahenmorph = ''.join(sahenmorph_list)
-                    else:
-                        sahenmorph_list = list()
-                if morph.pos1 == 'サ変接続':
-                    sahenmorph_list.append(morph.surface)
+                #st_chunk += morph.surface
+                if morph.pos == '名詞':
+                    #n_flag = 1
+                    #ans_list.append(morph.surface)
+                    st_chunk = ''.join(m.surface for m in chunk.morphs)
+                    chunk2 = chunk
+                    while chunk2.dst != -1:
+                        chunk2 = sentence[chunk2.dst]
+                        for morph2 in chunk2.morphs:
+                            st_chunk2 += morph2.surface
+                        st_chunk2 += ' '
+                        n_flag = 1
+                        #if chunk2.dst == -1:
+                            #break
+                    #print (st_chunk + '\t' + st_chunk2)
+                    #st_chunk = ''
+                    #st_chunk2 = ''
+            if n_flag == 1:
+                print (st_chunk + '\t' + st_chunk2)
+            st_chunk2 = ''
+            st_chunk = ''
 
-                if len(sahenmorph_list) == 2:
-                    if morph.pos == '動詞':
-                        v = sahenmorph + morph.base + '\t'
-                        sahenmorph_list = list()
-                        for src in chunk.srcs:
-                            if chunk_list[src].morphs[-1].pos == '助詞' and chunk_list[src].morphs[-1].base != 'を':
-                                p_f = ''
-                                p_list.append(chunk_list[src].morphs[-1].base)
-                                for morph2 in chunk_list[src].morphs:
-                                    p_f += morph2.surface
-                                pf_list.append(p_f)
-                    if len(p_list) != 0:
-                        for p, pf in zip(p_list, pf_list):
-                            p_dic[p] = pf
-                        keys, values = list(zip(*sorted(p_dic.items())))
-                        #for key, value in sorted(p_dic.items()):
-                            #x[key] = value
-                        #ans = ' '.join(sorted(p_list)) + '\t' + ' '.join(sorted(pf_list, key=lambda x: x[::-1]))
-                        #ans = ' '.join(p_dic.keys()) + '\t' + ' '.join(p_dic.values())
-                        ans = ' '.join(keys) + '\t' + ' '.join(values)
-                        p_list = list()
-                        pf_list = list()
-                        p_dic = {}
-                        x = {}
-                        print (v + ans)
-                        break
+                    #print (''.join(ans_list))
+                    #ans_list = list()
+                    #break
