@@ -4,11 +4,10 @@ from graphviz import Digraph
 
 graph = Digraph(format = "png")
 
-
 if __name__ == "__main__":
     sentences = read_cabocha()
-    for sentence in sentences[:10]:
-        for chunk in sentence:
+    for i, sentence in enumerate(sentences[:10]):
+        for j, chunk in enumerate(sentence):
             if chunk.getDst() != -1:
                 s1 = ""
                 s2 = ""
@@ -18,8 +17,6 @@ if __name__ == "__main__":
                 for morph2 in sentence[chunk.getDst()].getMorphs():
                     if morph2.getPos() != "記号":
                         s2 += morph2.getSurface()
-                
-                graph.edge(s1, s2)
+                graph.edge("{}.{}\n{}".format(i, j, s1), "{}.{}\n{}".format(i, chunk.getDst(), s2))
 
-#print(graph)
 graph.render("tree")

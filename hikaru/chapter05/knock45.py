@@ -60,7 +60,16 @@ def get_chunk_sentences():
 if __name__ == "__main__":
     sentences = get_chunk_sentences()
     for sentence in sentences:
+        chunk_list = list()
         for chunk in sentence:
+            chunk_list.append(chunk)
             for morph in chunk.morphs:
-                print (morph.surface)
-            #print (' '.join(chunk.morphs))
+                if morph.pos == '動詞':
+                    ans = morph.base + '\t'
+                    #print (morph.base)
+                    for src in chunk.srcs:
+                        if chunk_list[src].morphs[-1].pos == '助詞':
+                            ans += chunk_list[src].morphs[-1].base + ' '
+                            #print (chunk_list[src].morphs[-1].base)
+                    print (ans)
+                    break

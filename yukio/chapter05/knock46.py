@@ -3,7 +3,6 @@ from knock41 import Chunk, read_cabocha
 
 if __name__ == "__main__":
     sentences = read_cabocha()
-    f = open("verb_case_flame.txt", "w")
 
     for sentence in sentences:
         for chunk in sentence:
@@ -26,6 +25,5 @@ if __name__ == "__main__":
                         for s1, s2 in case_flames:
                             cases.append(s1)
                             chunks.append(s2)
-                        f.write("{}\t{}\t{}\n".format(predicate, " ".join(cases), " ".join(chunks)))
+                        print("{}\t{}\t{}".format(predicate, " ".join(cases), " ".join(chunks)))
                     break
-    f.close()

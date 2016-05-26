@@ -15,7 +15,7 @@ for line in neko_list:
         particles = []
         for src in chunk.srcs:
             morph = line[src].morphs
-            if morph[-1].pos == "助詞":
+            if morph[-1].pos1 == "格助詞":
                 particles.append(morph[-1].base)
         if particles != []:
             print (verb + "\t" + " ".join(sorted(particles)))
