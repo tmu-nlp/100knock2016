@@ -12,8 +12,8 @@ if __name__ == "__main__":
                 s += morph.getSurface()
                 if morph.getPos() == "名詞":
                     noun_check = 1
-            if noun_check == 1:
-                i = chunk.getDst()
+            i = chunk.getDst()
+            if noun_check == 1 and i != -1:
                 while i != -1:
                     s += " -> "
                     for morph in sentence[i].getMorphs():
