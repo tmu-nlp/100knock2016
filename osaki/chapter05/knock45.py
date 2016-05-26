@@ -5,12 +5,14 @@ from knock41 import mkChunkclass
 s=[]
 t=[]
 result=""
-c=0
 wordtt=[]
+c=0
+cs=0
+test=0
 for line in mkChunkclass(mkMorphclass()):
-    c+=1
+    test+=1
     for phrase in line:
-        d=int(phrase.srcs)
+        d=cs
         for word in phrase.morph:
             if word.pos!="記号":
                 s+=[[word.pos,word.base]]
@@ -19,6 +21,8 @@ for line in mkChunkclass(mkMorphclass()):
                 for word in phrase_d.morph:
                     if word.pos!="記号":
                         t+=[[word.pos,word.base]]
+            c+=1
+        c=0
         for words in s:
             if words[0]=="動詞":
                 result+=words[1]+"\t"
@@ -31,5 +35,7 @@ for line in mkChunkclass(mkMorphclass()):
                 wordtt=[]
         s=[]
         t=[]
-    if c==8:
-            break
+        cs+=1
+    cs=0
+    if test==8:
+        break

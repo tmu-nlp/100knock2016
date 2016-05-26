@@ -9,9 +9,11 @@ wordtt=[]
 wordtp=[]
 wordtp_=[]
 wordtw=[]
+c=0
+test=0
 for line in mkChunkclass(mkMorphclass()):
     for phrase in line:
-        d=int(phrase.srcs)
+        d=c
         for word in phrase.morph:
             if word.pos!="記号":
                 s+=[word]
@@ -43,3 +45,8 @@ for line in mkChunkclass(mkMorphclass()):
                 wordtw=[]
         s=[]
         t=[]
+        c+=1
+    c=0
+    test+=1
+    if test==8:
+        break

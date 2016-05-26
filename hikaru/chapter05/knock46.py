@@ -72,20 +72,20 @@ if __name__ == "__main__":
                     if morph.pos == '動詞':
                         v = morph.base + '\t'
                         for src in chunk.srcs:
-                            if chunk_list[src].morphs[-1].pos == '助詞':
+                            if chunk_list[src].morphs[-1].pos == '助詞': #sentenceでいいじゃん
                                 p_f = ''
                                 p_list.append(chunk_list[src].morphs[-1].base)
                                 for morph2 in chunk_list[src].morphs:
                                     p_f += morph2.surface
                                 pf_list.append(p_f)
-                    if len(p_list) != 0:
-                        for p, pf in zip(p_list, pf_list):
-                            p_dic[p] = pf
-                        sorted(p_dic.items())
-                        ans = ' '.join(p_dic.keys()) + '\t' + ' '.join(p_dic.values())
-                        p_list = list()
-                        pf_list = list()
-                        p_dic = {}
-                        print (v + ans)
+                        if len(p_list) != 0:
+                            for p, pf in zip(p_list, pf_list):
+                                p_dic[p] = pf
+                            keys, values = list(zip(*sorted(p_dic.items())))
+                            ans = ' '.join(keys) + '\t' + ' '.join(values)
+                            p_list = list()
+                            pf_list = list()
+                            p_dic = {}
+                            print (v + ans)
                         break
 
