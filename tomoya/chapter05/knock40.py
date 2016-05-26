@@ -22,7 +22,7 @@ def getMorph():
       if count == 2:
         morph_obj.print_morph()
     elif "EOS" in line:
-      count += 1
+        count += 1
 
 
 if __name__ == "__main__":

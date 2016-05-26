@@ -9,5 +9,4 @@ for x in sentence:
     if y.dst != "-1":
       y.print_chunk()
       print(" ", end = "")
-      x[int(y.dst)].print_chunk()
-      print() 
+      print(x[int(y.dst)].morph_str("surface")) 
