@@ -16,7 +16,6 @@ def get_tag(line):
     base = re.split(r'\t|,',line)[7]
     return Morph(surface, base, pos, pos1)
 
-
 def neko_cabocha():
     s = []
     for line in open('neko.txt.cabocha'):
