@@ -18,18 +18,18 @@ def get_tag(line):
 
 
 def neko_cabocha():
-    sentence = []
+    s = []
     for line in open('neko.txt.cabocha'):
         line = line.strip()
         if line == 'EOS':
-            if len(sentence) != 0:
-                yield sentence
-                sentence = []
+            if len(s) != 0:
+                yield s
+                s = []
             continue
         if line.startswith('*'):
             continue
         morph = get_tag(line)
-        sentence.append(morph)
+        s.append(morph)
 
 if __name__ == "__main__":
     for i,line in enumerate(neko_cabocha()):
