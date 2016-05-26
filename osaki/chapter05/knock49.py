@@ -47,5 +47,5 @@ for line in mkChunkclass(mkMorphclass()):
                             print(mk_i_j(line,i,j)[0]+mkpass(line,int(line[i].dst),j).split("|")[0]+" -> "+mk_i_j(line,i,j)[1])
                         else:
                             print(mk_i_j(line,i,j)[0]+mkpass(line,int(line[i].dst),j).split("|")[0]+"|"+mk_i_j(line,i,j)[1]+mkpass(line,int(line[i].dst),j).split("|")[1]+"|"+mkpass(line,int(line[i].dst),j).split("|")[2])
-    if test==8:
-        break
+#    if test==8:
+#        break
