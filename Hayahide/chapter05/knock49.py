@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
-from knock48_2 import Morph, Chunk, Caboching, merge
+from knock48 import Morph, Chunk, Caboching, merge
 
-def search_pass(line, chunk_num, goal):
+def search_path(line, chunk_num, goal):
     ans_list = [chunk_num]
     while ans_list[-1] != goal:
         ans_list.append(line[ans_list[-1]].dst)
@@ -28,30 +28,30 @@ for line in neko_list:
             if len(Y_esc) == 0:
                 continue
             
-            xpass = search_pass(line, i, -1)
-            ypass = search_pass(line, j, -1)
-            if xpass == None or ypass == None or len(ypass) == 0:
+            xpath = search_path(line, i, -1)
+            ypath = search_path(line, j, -1)
+            if xpath == None or ypath == None or len(ypath) == 0:
                 continue
             
-            merge_pass = list(sorted(set(xpass + ypass)))
+            merge_path = list(sorted(set(xpath + ypath)))
             ans_list = []
-            if len(xpass) == len(merge_pass):
-                for temp in search_pass(line, i, ypass[0]):
+            if len(xpath) == len(merge_path):
+                for temp in search_path(line, i, ypath[0]):
                     ans_list.append(merge(line[temp]))
                 ans_list.pop()
                 ans_list.append(jmorph.surface)
                 print (" -> ".join(ans_list))
             else:
                 ans = ""
-                for temp in list(sorted(set(xpass) - set(ypass))):
+                for temp in list(sorted(set(xpath) - set(ypath))):
                     ans_list.append(merge(line[temp]))
                 ans += " -> ".join(ans_list) + " | "
                 ans_list = []
-                for temp in list(sorted(set(ypass) - set(xpass))):
+                for temp in list(sorted(set(ypath) - set(xpath))):
                     ans_list.append(merge(line[temp]))
                 ans += " -> ".join(ans_list) + " | "
                 ans_list = []
-                for temp in list(sorted(set(xpass) & set(ypass))):
+                for temp in list(sorted(set(xpath) & set(ypath))):
                     ans_list.append(merge(line[temp]))
                 ans_list.pop()
                 ans += " -> ".join(ans_list)
