@@ -18,11 +18,12 @@ for x in sentence[:]:
           for z in y.srcs:
             if not x[int(z)].isPos("助詞"):
               continue
-            if x[int(z)].morphs[-1].base == "、":
+            if x[int(z)].morphs[-1].surface == "、":
               x[int(z)].morphs.pop()
             s1.append("{} ".format(x[int(z)].morphs[-1].surface))
             s2.append("{} ".format(x[int(z)].morph_str("surface")))
-          s1.append("\t")
-          s1.extend(s2)
-          print("".join(s1))
+          if s2 != []:
+            s1.append("\t")
+            s1.extend(s2)
+            print("".join(s1))
 
