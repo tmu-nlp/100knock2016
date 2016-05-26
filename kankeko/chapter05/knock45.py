@@ -9,7 +9,7 @@ for s in get_cabocha():
                 src_chunk = s[src]
                 if any(m.pos == "助詞" for m in chunk.morphs):
                     line = [m.surface for m in chunk.morphs if m.pos == '助詞'][0]
-                if line != "":
+                #if line != "":
                     mylist.append(line)
         if len(mylist) != 0:
             if any(m.pos == "動詞" for m in chunk.morphs):
