@@ -9,12 +9,20 @@ sentence = getChunk()
 for x in sentence[:]:
   for y in x:
         if y.isPos("動詞") and y.srcs != []:
-          print(y.morphs[0].base, end = "\t")
+          s1 = []
+          s2 = []
+          for morph in y.morphs:
+            if morph.pos == "動詞":
+              s1.append("{}\t".format(morph.base))
+              break
           for z in y.srcs:
-            if len(x[int(z)].morphs) < 1:
+            if not x[int(z)].isPos("助詞"):
               continue
-            print(x[int(z)].morphs[-1].base, end = " ")
-          print("\t", end  = "")
-          for z in y.srcs:
-            print(x[int(z)].morph_str("surface"), end = " ")
-          print("")
+            if x[int(z)].morphs[-1].base == "、":
+              x[int(z)].morphs.pop()
+            s1.append("{} ".format(x[int(z)].morphs[-1].surface))
+            s2.append("{} ".format(x[int(z)].morph_str("surface")))
+          s1.append("\t")
+          s1.extend(s2)
+          print("".join(s1))
+

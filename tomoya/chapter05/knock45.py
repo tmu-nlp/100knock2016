@@ -11,5 +11,5 @@ for x in sentence[:]:
         if y.isPos("動詞") and y.srcs != []: 
           print(y.morphs[0].base, end = "\t")
           for z in y.srcs:
-            print(x[int(z)].morphs[-1].base, end = " ")
+            print(x[int(z)].morphs[-1].surface, end = " ")
           print()
