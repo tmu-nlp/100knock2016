@@ -21,10 +21,13 @@ def getMorphology(fileName):
 			ketaisoLst.append(dic)
 	return ketaisoLst
 	# print (dic)
-def main ():
+if __name__ == "__main__":
 	ktsList = getMorphology("neko.txt.mecab")
 	article = ""
 	for kts in ktsList:
-		article += kts["surface"] if kts["surface"] != "EOS" else "\n"
-
+		try:
+			article += kts["surface"] if kts["surface"] != "EOS" else "\n"
+		except KeyError as e:
+			print ("############1",kts, e)
 	print (article)
+

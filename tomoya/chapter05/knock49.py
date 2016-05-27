@@ -41,7 +41,7 @@ for x in sentence[:20]:
           elif index == j:
             print("Y", end = "")
           else:
-            x[index].print_chunk()
+            print(x[index].morph_str("surface"), end = "")
           if counter1 == len(path) - 1:
             print(end = " ")
           else:
@@ -54,7 +54,7 @@ for x in sentence[:20]:
             elif index2 == j:
               print("Y{}".format(x[index2].morphs[-1].surface), end = "")
             else:
-              x[index2].print_chunk()
+              print(x[index2].morph_str("surface"), end = "")
             if counter2 == len(index) - 1:
               print(end = " ")
             else:
