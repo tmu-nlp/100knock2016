@@ -1,0 +1,74 @@
+# knock41.py
+# coding = utf-8
+import sys, re
+import knock40
+
+# * 0 -1D 0/0 0.000000
+# * 1 2D 0/1 -0.764522
+
+reChuckHead = re.compile("^\* (?P<id>[0-9]+) (?P<dst>-?[0-9]+)D.*$")
+
+from collections import defaultdict
+class Chunk(object):
+	"""docstring for Chunk"""
+	def __init__(self, id, morph_list, destnitaion, sources):
+		super(Chunk, self).__init__()
+		self._id = int(id)
+		self._morphs = morph_list
+		self._dst = int(destnitaion)
+		self._srcs = sources
+
+	def appendMorph(self, morph):
+		self._morphs.append(morph)
+	def __str__(self):
+		srcs =",".join(self._srcs)
+		bun = ""
+		for i, m in enumerate(self._morphs):
+			bun += ("\t" + str(m) + ("\n" if( i < len(self._morphs) - 1 ) else ""))
+		return "id=%d,des=%d,srcs=[%s]\n%s" % (self._id, self._dst, srcs, bun)
+	def origin(self):
+		org = ""
+		for i, m in enumerate(self._morphs):
+			org += (m.surface)
+		return org
+
+def createMorphFromLine(line):
+	return knock40.createMorphFromLine(line)
+
+
+
+def createChunkListFromData(data):
+	chunkList = []
+	srsDict = defaultdict(list)
+	for line in data:
+		if line.startswith("*"):
+			match = reChuckHead.match(line)
+			chunkList.append(Chunk(match.group("id"), [], match.group("dst"), srsDict[match.group("id")]))
+			if match.group("dst") is not "-1":
+				srsDict[match.group("dst")].append(match.group("id"))
+		else:
+			morph = None
+			try:
+				morph = createMorphFromLine(line)
+			except:
+				print("ERR", line)
+			else:
+				chunkList[len(chunkList) - 1].appendMorph(morph)
+	return chunkList
+
+	
+article = []
+def main():
+	data = []
+	for line in sys.stdin:
+		if not line.startswith("EOS"):
+			data.append(line)
+		else:
+			lst = createChunkListFromData(data)
+			
+			article.append(lst)
+			data = []
+	for chunk in article[7]:
+		print ((chunk))
+if __name__ == '__main__':
+	main()
