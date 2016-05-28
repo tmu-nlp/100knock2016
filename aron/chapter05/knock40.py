@@ -8,10 +8,13 @@ class Morph(object):
 		super(Morph, self).__init__()
 		self.surface = surface
 		self.base = base  
-		self.pos = pos  
+		self.pos = str(pos)  
 		self.pos1 = pos1 
 	def __str__(self):
 		return ("surface=%s, base=%s, pos=%s, pos1=%s" % (self.surface, self.base, self.pos, self.pos1))
+	def pos(self):
+		return str(self.pos)
+
 
 def createMorphFromLine(line):
 	if len(line) == 0 or line[0:3] == "EOS":

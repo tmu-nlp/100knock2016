@@ -18,19 +18,40 @@ class Chunk(object):
 		self._dst = int(destnitaion)
 		self._srcs = sources
 
+	def id(self):
+		return self._id
+
+	def dest(self):
+		return self._dst
+
 	def appendMorph(self, morph):
 		self._morphs.append(morph)
+
 	def __str__(self):
 		srcs =",".join(self._srcs)
 		bun = ""
 		for i, m in enumerate(self._morphs):
 			bun += ("\t" + str(m) + ("\n" if( i < len(self._morphs) - 1 ) else ""))
 		return "id=%d,des=%d,srcs=[%s]\n%s" % (self._id, self._dst, srcs, bun)
+
 	def origin(self):
 		org = ""
-		for i, m in enumerate(self._morphs):
+		for m in self._morphs:
 			org += (m.surface)
+			# print (m.surface)
+		if org.startswith(" "):
+			print ("start with space")
+		if org.endswith(" "):
+			print ("end with space")
 		return org
+
+	def hasNone(self):
+		return any(m.pos == "名詞" for m in self._morphs)
+
+	def hasVerb(self):
+		return any(m.pos == "動詞" for m in self._morphs)
+
+	
 
 def createMorphFromLine(line):
 	return knock40.createMorphFromLine(line)
