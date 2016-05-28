@@ -10,8 +10,8 @@ class Morph(object):
 		self.base = base  
 		self.pos = pos  
 		self.pos1 = pos1 
-	def printme(self):
-		print("surface=%s, base=%s, pos=%s, pos1=%s" % (self.surface, self.base, self.pos, self.pos1))
+	def __str__(self):
+		return ("surface=%s, base=%s, pos=%s, pos1=%s" % (self.surface, self.base, self.pos, self.pos1))
 
 def createMorphFromLine(line):
 	if len(line) == 0 or line[0:3] == "EOS":
