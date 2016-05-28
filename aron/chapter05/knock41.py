@@ -77,19 +77,24 @@ def createChunkListFromData(data):
 				chunkList[len(chunkList) - 1].appendMorph(morph)
 	return chunkList
 
-	
-article = []
-def main():
+def sentenceDataIterator(input):
 	data = []
-	for line in sys.stdin:
+	for line in input:
 		if not line.startswith("EOS"):
 			data.append(line)
 		else:
-			lst = createChunkListFromData(data)
-			
-			article.append(lst)
+			yield data
 			data = []
+
+article = []
+
+def main():
+	for sdata in sentenceDataIterator(sys.stdin):
+			chunkList = createChunkListFromData(sdata)
+			article.append(chunkList)
+
 	for chunk in article[7]:
 		print ((chunk))
+
 if __name__ == '__main__':
 	main()
