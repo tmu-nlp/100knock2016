@@ -1,43 +1,26 @@
 # coding = utf-8
 # knock44.py
 
-##################################
+###############################################
 # 44. 係り受け木の可視化            
 #
 # 与えられた文の係り受け木を有向グラフとして可視化せよ．
 # 可視化には，係り受け木をDOT言語に変換し，Graphvizを
 # 用いるとよい．また，Pythonから有向グラフを直接的に可
 # 視化するには，pydotを使うとよい
+################################################
 
 import sys, re
 import knock41
 # import graphviz as pgv
 from graphviz import Digraph
 
-# def pushData(index, data):
+# graphviz examples URL:
+# http://graphviz.readthedocs.io/en/stable/examples.html
 
 	
 def main():
 	G = Digraph(format='png')
-	# G.attr('node', shape='circle')
-
-
-	# N = 15    # ノード数
-
-	# # ノードの追加
-	# for i in range(N):
-	#     G.node(str(i), str(i))
-
-	# # 辺の追加
-	# for i in range(N):
-	#     if (i - 1) // 2 >= 0:
-	#         G.edge(str((i - 1) // 2), str(i))
-
-	# # print()するとdot形式で出力される
-	# print(G)
-
-	# # binary_tree.pngで保存
-	# G.render('binary_tree')
 
 	data = []
 	sentId = 0
