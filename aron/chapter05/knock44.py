@@ -22,27 +22,17 @@ from graphviz import Digraph
 def main():
 	G = Digraph(format='png')
 
-	data = []
-	sentId = 0
-	for line in sys.stdin:
-		if not line.startswith("EOS"):
-			data.append(line)
-		else:
-			if sentId == int(sys.argv[1]) - 1:
-				lst = knock41.createChunkListFromData(data)
-				for c in lst:
-					if c.dest() != -1:
-						G.node(str(c.id()), c.origin())
-						G.node(str(c.dest()), lst[c.dest()].origin())
-						G.edge(str(c.id()), str(c.dest()))
-					# binary_tree.pngで保存
-				G.render('knock44', cleanup=True)
-				return
-			# else:
-				
-			sentId += 1
-			data = []
-		
+	for sentId, sentenceData in enumerate(knock41.sentenceDataIterator(sys.stdin)):
+		if sentId == int(sys.argv[1]) - 1:
+			chunkList = knock41.createChunkListFromData(sentenceData)
+			for c in chunkList:
+				if c.dest() != -1:
+					G.node(str(c.id()), c.origin())
+					G.node(str(c.dest()), chunkList[c.dest()].origin())
+					G.edge(str(c.id()), str(c.dest()))
+				# binary_tree.pngで保存
+			G.render('knock44', cleanup=True)
+			return		
 		
 if __name__ == '__main__':
 	main()
