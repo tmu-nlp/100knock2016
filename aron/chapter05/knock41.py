@@ -24,6 +24,10 @@ class Chunk(object):
 	def dest(self):
 		return self._dst
 
+	# 係り元のリストを返す
+	def sources(self):
+		return self._srcs
+
 	def appendMorph(self, morph):
 		self._morphs.append(morph)
 
@@ -44,6 +48,26 @@ class Chunk(object):
 		if org.endswith(" "):
 			print ("end with space")
 		return org
+
+	# 最初の動詞の添字を返す
+	def firstVerbId(self):
+		for i, m in enumerate(self._morphs):
+			if m.pos == "動詞":
+				return i
+		return -1
+
+	# 助詞の添字を返す
+	def getJoshiId(self):
+		for i, m in enumerate(self._morphs):
+			if m.pos == "助詞":
+				return i
+		return -1
+	
+	# indexに指定された形態素を返す
+	def getMorph(self, index):
+		if 0 <= index < len(self._morphs):
+			return self._morphs[index]
+		return None
 
 	def hasNone(self):
 		return any(m.pos == "名詞" for m in self._morphs)
