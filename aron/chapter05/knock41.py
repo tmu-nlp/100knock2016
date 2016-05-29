@@ -57,10 +57,18 @@ class Chunk(object):
 		return -1
 
 	# 助詞の添字を返す
+	# 助詞が二つある場合がある
+	# 一番後ろの助詞の添字を返すのが正しいか？
+	# 例:neko.txt.cabocha 25115行
+	# * 13 15D 0/3 -2.161658
+	# 聞い	動詞,自立,*,*,五段・カ行イ音便,連用タ接続,聞く,キイ,キイ
+	# た	助動詞,*,*,*,特殊・タ,基本形,た,タ,タ
+	# か	助詞,副助詞／並立助詞／終助詞,*,*,*,*,か,カ,カ
+	# と	助詞,格助詞,引用,*,*,*,と,ト,ト
 	def getJoshiId(self):
-		for i, m in enumerate(self._morphs):
-				return i
+		for i, m in enumerate(reversed(self._morphs)):
 			if m._pos == "助詞":
+				return len(self._morphs) - i - 1
 		return -1
 	
 	# indexに指定された形態素を返す
@@ -75,6 +83,11 @@ class Chunk(object):
 	def hasVerb(self):
 		return any(m._pos == "動詞" for m in self._morphs)
 
+	def find(self, what):
+		# return any(m._pos == "動詞" for m in self._morphs)
+		for i, m in enumerate(self._morphs):
+			if(m.surface.find(what) > -1) :
+				return i
 	
 
 def createMorphFromLine(line):

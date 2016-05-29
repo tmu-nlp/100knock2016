@@ -14,6 +14,8 @@ class Morph(object):
 		return ("surface=%s, base=%s, pos=%s, pos1=%s" % (self._surface, self._base, self._pos, self._pos1))
 	def pos(self):
 		return str(self._pos)
+	def pos1(self):
+		return str(self._pos1)
 
 
 def createMorphFromLine(line):
