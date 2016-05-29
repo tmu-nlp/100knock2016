@@ -60,7 +60,8 @@ for line in open("nlp.txt.xml", "r"):
                 l_start = int(re.search(pattern_start_id, line).group("start_id")) - 1
             elif re.search(pattern_end_id, line):
                 l_end = int(re.search(pattern_end_id, line).group("end_id")) - 1
-                del document[k][l_start:l_end]
+                document[k].insert(l_end, ")")
+                document[k].insert(l_start, "(")
                 words = representative.split()
                 words.reverse()
                 for word in words:
