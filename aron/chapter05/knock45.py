@@ -41,7 +41,7 @@ def main():
 		for c in chunkList:
 			if c.hasVerb():
 				# output = ""
-				baseVerb = c.getMorph(c.firstVerbId()).base
+				baseVerb = c.getMorph(c.firstVerbId())._base
 				joshi = list()
 				for srcId in c.sources():
 					# print(c.origin(), c.firstVerbId())
@@ -49,7 +49,7 @@ def main():
 
 					# print (id_joshi)
 					if id_joshi != -1 :
-						baseJoshi = chunkList[int(srcId)].getMorph(id_joshi).base
+						baseJoshi = chunkList[int(srcId)].getMorph(id_joshi)._base
 						joshi.append(baseJoshi)
 				if len(joshi) > 0 :
 					print("%s\t%s" % (baseVerb, " ".join(sorted(joshi))))

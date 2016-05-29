@@ -6,14 +6,14 @@ class Morph(object):
 	"""docstring for Morph"""
 	def __init__(self, surface, base, pos, pos1, ):
 		super(Morph, self).__init__()
-		self.surface = surface
-		self.base = base  
-		self.pos = str(pos)  
-		self.pos1 = pos1 
+		self._surface = surface
+		self._base = base  
+		self._pos = str(pos)  
+		self._pos1 = pos1 
 	def __str__(self):
-		return ("surface=%s, base=%s, pos=%s, pos1=%s" % (self.surface, self.base, self.pos, self.pos1))
+		return ("surface=%s, base=%s, pos=%s, pos1=%s" % (self._surface, self._base, self._pos, self._pos1))
 	def pos(self):
-		return str(self.pos)
+		return str(self._pos)
 
 
 def createMorphFromLine(line):

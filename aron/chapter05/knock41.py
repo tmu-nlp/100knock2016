@@ -41,7 +41,7 @@ class Chunk(object):
 	def origin(self):
 		org = ""
 		for m in self._morphs:
-			org += (m.surface)
+			org += (m._surface)
 			# print (m.surface)
 		if org.startswith(" "):
 			print ("start with space")
@@ -52,15 +52,15 @@ class Chunk(object):
 	# 最初の動詞の添字を返す
 	def firstVerbId(self):
 		for i, m in enumerate(self._morphs):
-			if m.pos == "動詞":
+			if m._pos == "動詞":
 				return i
 		return -1
 
 	# 助詞の添字を返す
 	def getJoshiId(self):
 		for i, m in enumerate(self._morphs):
-			if m.pos == "助詞":
 				return i
+			if m._pos == "助詞":
 		return -1
 	
 	# indexに指定された形態素を返す
@@ -70,10 +70,10 @@ class Chunk(object):
 		return None
 
 	def hasNone(self):
-		return any(m.pos == "名詞" for m in self._morphs)
+		return any(m._pos == "名詞" for m in self._morphs)
 
 	def hasVerb(self):
-		return any(m.pos == "動詞" for m in self._morphs)
+		return any(m._pos == "動詞" for m in self._morphs)
 
 	
 
