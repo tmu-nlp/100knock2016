@@ -21,3 +21,31 @@
 # 始める  で      ここで
 # 見る    は を   吾輩は ものを
 ###############################################
+
+import sys, re
+import knock41
+
+def main():
+	# for sentData in knock41.
+	for sentenceData in knock41.sentenceDataIterator(sys.stdin):
+		chunkList = knock41.createChunkListFromData(sentenceData)
+		for c in chunkList:
+			if c.hasVerb():
+				# output = ""
+				baseVerb = c.getMorph(c.firstVerbId()).base
+				joshi = list()
+				joshiChunk = list()
+				for srcId in c.sources():
+					# print(c.origin(), c.firstVerbId())
+					id_joshi = chunkList[int(srcId)].getJoshiId()
+
+					# print (id_joshi)
+					if id_joshi != -1 :
+						baseJoshi = chunkList[int(srcId)].getMorph(id_joshi).base
+						joshi.append(baseJoshi)
+						joshiChunk.append(chunkList[int(srcId)].origin())
+				if len(joshi) > 0 :
+					print("%s\t%s\t%s" % (baseVerb, " ".join(joshi), " ".join(joshiChunk)))
+
+if __name__ == '__main__':
+	main()
