@@ -14,39 +14,36 @@
 # コーパス中で頻出する述語（サ変接続名詞+を+動詞）
 # コーパス中で頻出する述語と助詞パターン
 
-import sys, re
+import sys, re, string
 import knock40, knock41
 
 def main():
-	# for sentData in knock41.
+	punctuation = string.punctuation + "「」、";
+
 	for sentenceData in knock41.sentenceDataIterator(sys.stdin):
 		chunkList = knock41.createChunkListFromData(sentenceData)
 		for c in chunkList:
 			if c.hasVerb():
-				# output = ""
 				baseVerb = c.getMorph(c.firstVerbId())._base
-				joshi = list()
-				joshiChunk = list()
+				joshi = dict()
 				idWoChunk = -1
 				idWoMorph = -1
 				for srcId in c.sources():
-					# print(c.origin(), c.firstVerbId())
 					id_joshi = chunkList[int(srcId)].getJoshiId()
 
-					# print (id_joshi)
 					if id_joshi != -1 :
 						baseJoshi = chunkList[int(srcId)].getMorph(id_joshi)._base
 						if baseJoshi == "を":
 							idWoChunk = int(srcId)
 							idWoMorph = id_joshi
 						else:
-							joshi.append(baseJoshi)
-							joshiChunk.append(chunkList[int(srcId)].origin())
+							joshi[baseJoshi] = chunkList[int(srcId)].origin().strip(punctuation)
 				if len(joshi) > 0 and idWoChunk >= 0 :
 					morph = chunkList[idWoChunk]._morphs[idWoMorph - 1]
-					# pos = 
+					joshi_sorted = sorted(joshi, key=lambda x:x[0])
+					jsent_sorted = [joshi[key] for key in joshi_sorted]
 					if(morph.pos1() == "サ変接続"):
-						print("%s%s\t%s\t%s" % (chunkList[idWoChunk].origin(), baseVerb, " ".join(joshi), " ".join(joshiChunk)))
+						print("%s%s\t%s\t%s" % (chunkList[idWoChunk].origin().strip(punctuation), baseVerb, " ".join(joshi_sorted), " ".join(jsent_sorted)))
 
 if __name__ == '__main__':
 	main()
