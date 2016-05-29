@@ -28,6 +28,9 @@
 # （コーパス中で出現頻度の高い順に並べよ）
 ################################################
 
+# 問題：
+# 1文節中助詞複数ある場合がある、その時どう処理する？
+
 import sys, re
 import knock41
 
@@ -39,7 +42,7 @@ def main():
 			if c.hasVerb():
 				# output = ""
 				baseVerb = c.getMorph(c.firstVerbId()).base
-				joshi = set()
+				joshi = list()
 				for srcId in c.sources():
 					# print(c.origin(), c.firstVerbId())
 					id_joshi = chunkList[int(srcId)].getJoshiId()
@@ -47,8 +50,9 @@ def main():
 					# print (id_joshi)
 					if id_joshi != -1 :
 						baseJoshi = chunkList[int(srcId)].getMorph(id_joshi).base
-						joshi.add(baseJoshi)
+						joshi.append(baseJoshi)
 				if len(joshi) > 0 :
 					print("%s\t%s" % (baseVerb, " ".join(sorted(joshi))))
+
 if __name__ == '__main__':
 	main()
