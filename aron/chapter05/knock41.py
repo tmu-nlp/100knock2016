@@ -126,12 +126,12 @@ def sentenceDataIterator(input):
 article = []
 
 def main():
-	for sdata in sentenceDataIterator(sys.stdin):
+	for lineNo, sdata in enumerate(sentenceDataIterator(sys.stdin)):
+		if(lineNo == int(sys.argv[1]) - 1):
 			chunkList = createChunkListFromData(sdata)
-			article.append(chunkList)
-
-	for chunk in article[7]:
-		print ((chunk))
+			for chunk in chunkList:
+				print ((chunk))
+	
 
 if __name__ == '__main__':
 	main()
