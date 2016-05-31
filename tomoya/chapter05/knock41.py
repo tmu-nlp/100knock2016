@@ -7,9 +7,6 @@ def getChunk():
       self.morphs = morphs
       self.dst = dst
       self.srcs = srcs
-    def print_chunk(self):
-      for x in self.morphs:
-        print(x.surface.strip("、|。"), end = "")
     def isPos(self, pos):
       for x in self.morphs:
         if x.pos == pos:

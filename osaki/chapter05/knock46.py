@@ -9,17 +9,14 @@ wordtt=[]
 wordtp=[]
 wordtp_=[]
 wordtw=[]
-c=0
-test=0
+#test=0
 for line in mkChunkclass(mkMorphclass()):
     for phrase in line:
-        d=c
         for word in phrase.morph:
             if word.pos!="記号":
                 s+=[word]
-        for phrase_d in line:
-            if int(phrase_d.dst)==d:
-                t+=[phrase_d]
+        for item in phrase.srcs:
+                t+=[line[int(item)]]
         for words in s:
             if words.pos=="動詞":
                 result+=words.base+"\t"
@@ -35,18 +32,17 @@ for line in mkChunkclass(mkMorphclass()):
                     wordtp+=["".join(wordtp_)]
                     wordtp_=[]
                     wordtw+=[item[0]]
-                result+=" ".join(wordtw)
-                result+="\t"
-                result+=" ".join(wordtp)
-                print(result)
+                if wordtp!=[]:
+                    result+=" ".join(wordtw)
+                    result+="\t"
+                    result+=" ".join(wordtp)
+                    print(result)
                 result=""
                 wordtt=[]
                 wordtp=[]
                 wordtw=[]
         s=[]
         t=[]
-        c+=1
-    c=0
-    test+=1
-    if test==8:
-        break
+#    test+=1
+#    if test==8:
+#        break
