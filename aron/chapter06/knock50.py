@@ -24,5 +24,6 @@ def main():
 		input = open(sys.argv[1], "r")
 	for line in iterLine(input):
 		print(line)
+		
 if __name__ == '__main__':
 	main()
