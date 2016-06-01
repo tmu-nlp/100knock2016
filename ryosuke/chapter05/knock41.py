@@ -3,7 +3,6 @@ from collections import defaultdict
 
 
 class Morph:
-
     def __init__(self, surface, base, pos, pos1):
         self.surface = surface
         self.base = base
@@ -46,7 +45,7 @@ class Chunk:
 
     def get_most_right_particle(self):
         if self.has_particle():
-            return [m.surface for m in self.morphs if m.pos == '助詞'][0]
+            return [m.surface for m in self.morphs if m.pos == '助詞'][-1]
 
     def is_sahen_wo(self):
         return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
