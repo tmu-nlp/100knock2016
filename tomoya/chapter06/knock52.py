@@ -1,7 +1,8 @@
-from knock50 import getSentence
 from knock51 import getWords
-from  stemming.porter2 import stem
+from nltk.stem.lancaster import LancasterStemmer
 
+
+st = LancasterStemmer()
 words = getWords()
 for word in words:
-  print(stem(word.strip().strip(",").strip(".")))
+    print(st.stem(word.strip().strip(",").strip(".")))
