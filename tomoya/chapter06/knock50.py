@@ -2,6 +2,7 @@ import sys
 import re
 def getSentence():
   searchPause = re.compile("(.*)[\.;\:\?!]\s([A-Z].*)", re.DOTALL)
+  #searchPause = re.compile("(.*)
   sentence = list()
   sentences = list()
   for line in open("nlp.txt"):
