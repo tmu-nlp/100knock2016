@@ -4,7 +4,7 @@ from knock41 import get_sentences
 
 
 def sent2graph(sentence):
-    dot = Digraph(format='svg')
+    dot = Digraph(format='png')
     for chunk in sentence:
         if chunk.dst != -1:
             dot.node(str(chunk.id), chunk.join_surface())

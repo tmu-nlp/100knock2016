@@ -6,7 +6,6 @@ from knock40 import mkMorphclass
 from knock41 import mkChunkclass
 import sys
 
-cl=0
 c=0
 s=""
 t=""
@@ -19,13 +18,9 @@ for line in mkChunkclass(mkMorphclass()):
             if word.pos!="記号":
                 s+=word.surface
                 dst=phrase.dst
-        for phrase_d in line:
-            if cl==d:
-                for word in phrase_d.morph:
-                    if word.pos!="記号":
-                         t+=word.surface
-            cl+=1
-        cl=0
+        for word in line[d].morph:
+            if word.pos!="記号":
+                 t+=word.surface
         if dst!="-1":
             dot+="\t"+'"'+s+'"'+" -> "+'"'+t+'"'+";\n"
         s=""
@@ -34,6 +29,6 @@ for line in mkChunkclass(mkMorphclass()):
     if c==int(sys.argv[1]):
         break
 
-f=open("dst.dot","w")
+f=open("knock44.dot","w")
 f.write(dot)
 f.close

@@ -1,4 +1,6 @@
 # knock31.py
+# -*- coding: utf-8 -*-
+
 import knock30
 
 ktsList = knock30.getMorphology("neko.txt.mecab")

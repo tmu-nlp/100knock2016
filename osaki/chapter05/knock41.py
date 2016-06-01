@@ -1,12 +1,16 @@
 #-*- coding:utf-8 -*-
 
-def mkChunkclass(morphlist):
-    class Chunk:
-        def __init__(self,morph,dst,srcs):
-            self.morph=morph
-            self.dst=dst
-            self.srcs=srcs
+class Chunk:
+    def __init__(self,morph,dst,srcs):
+        self.morph=morph
+        self.dst=dst
+        self.srcs=srcs
+    def __str__(self):
+        morph_=[str(i) for i in self.morph]
+        srcs_=[str(i) for i in self.srcs]
+        return(" ".join(morph_)+" || "+self.dst+" || "+",".join(srcs_))
 
+def mkChunkclass(morphlist):
     import re
     l=list()
     l_=list()
@@ -52,4 +56,4 @@ if __name__=="__main__":
         c+=1
         if c==8:
             for ch in l:
-                print(ch.morph[0].surface+"\t"+ch.dst+"\t"+",".join(ch.srcs))
+                print(ch)

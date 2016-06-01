@@ -12,15 +12,13 @@ test=0
 for line in mkChunkclass(mkMorphclass()):
     test+=1
     for phrase in line:
-        d=cs
         for word in phrase.morph:
             if word.pos!="記号":
                 s+=[[word.pos,word.base]]
-        for phrase_d in line:
-            if int(phrase_d.dst)==d:
-                for word in phrase_d.morph:
-                    if word.pos!="記号":
-                        t+=[[word.pos,word.base]]
+        for i in phrase.srcs:
+            for word in line[int(i)].morph:
+                if word.pos!="記号":
+                    t+=[[word.pos,word.base]]
             c+=1
         c=0
         for words in s:
@@ -35,7 +33,5 @@ for line in mkChunkclass(mkMorphclass()):
                 wordtt=[]
         s=[]
         t=[]
-        cs+=1
-    cs=0
     if test==8:
         break
