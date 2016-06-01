@@ -8,8 +8,7 @@ for x in sentence:
   for y in x:
     if y.dst != "-1":
       if y.isPos("名詞") and x[int(y.dst)].isPos("動詞"):
-        y.print_chunk()
+        print(y.morph_str("surface"), end = "")
         print("\t", end = "")
-        x[int(y.dst)].print_chunk()
-        print("")        
+        print(x[int(y.dst)].morph_str("surface"))
 
