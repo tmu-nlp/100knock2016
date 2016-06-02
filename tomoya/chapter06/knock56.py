@@ -11,7 +11,6 @@ search_word = re.compile('<word>(?P<word>.*)</word>')
 search_text = re.compile('<text>(?P<text>.*)</text>')
 search_head = re.compile('<head>(.*)</head>')
 search_representative = re.compile('<mention representative="true">')
-se = st = ed = hd = tt = None
 xml = []
 rep_flag = False
 for line in open("nlp.txt.out"):

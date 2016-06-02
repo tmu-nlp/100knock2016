@@ -35,6 +35,8 @@ def parseLine(line):
 		# s = sentence
 		article.append([])
 		# print (len(article), article[-1])
+	elif line.startswith("*"):
+		return None
 	else:
 		article[-1].append(createMorphFromLine(line))
 
