@@ -38,10 +38,13 @@ class Chunk(object):
 			bun += ("\t" + str(m) + ("\n" if( i < len(self._morphs) - 1 ) else ""))
 		return "id=%d,des=%d,srcs=[%s]\n%s" % (self._id, self._dst, srcs, bun)
 
-	def origin(self):
+	def origin(self, replaceNounWith = ""):
 		org = ""
 		for m in self._morphs:
-			org += (m._surface)
+			if(len(replaceNounWith) > 0 and m.pos() == "名詞"):
+				org += replaceNounWith
+			else:
+				org += (m._surface)
 			# print (m.surface)
 		if org.startswith(" "):
 			print ("start with space")
