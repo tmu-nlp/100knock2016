@@ -19,7 +19,7 @@ for line in open("nlp.txt.out"):
         if governor:
             if governor.group("governor") == "ROOT":
                 sentence += 1
-            if sentence > 4:
+            if sentence > 3:
                 break
             gov = str(sentence) + "-" + governor.group("gov_idx")
             G.node(gov, governor.group("governor"))
