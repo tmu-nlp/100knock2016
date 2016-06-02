@@ -6,22 +6,16 @@ s=""
 t=""
 ps=[]
 pt=[]
-c=0
 for line in mkChunkclass(mkMorphclass()):
     for phrase in line:
-        d=int(phrase.dst)
         for word in phrase.morph:
             if word.pos!="記号":
                 s+=word.surface
                 ps+=[word.pos]
-        for phrase_d in line:
-            if c==d:
-                for word in phrase_d.morph:
-                    if word.pos!="記号":
-                         t+=word.surface
-                         pt+=[word.pos]
-            c+=1
-        c=0
+        for word in line[int(phrase.dst)].morph:
+            if word.pos!="記号":  
+                t+=word.surface
+                pt+=[word.pos]
         if "名詞" in ps and "動詞" in pt:
             print(s+"\t"+t)
         s=""

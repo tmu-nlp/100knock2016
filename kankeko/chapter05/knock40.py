@@ -6,10 +6,8 @@ class Morph:
         self.base = base
         self.pos = pos
         self.pos1 = pos1
-
     def __str__(self):
-        return 'surface:{}, base: {}, pos: {}, pos1: {}'.format(
-                    self.surface, self.base, self.pos, self.pos1)
+        return 'surface:{}, base: {}, pos: {}, pos1: {}'.format(self.surface, self.base, self.pos, self.pos1)
 
 def get_tag(line):
     surface = re.split(r'\t|,',line)[0]
@@ -18,20 +16,19 @@ def get_tag(line):
     base = re.split(r'\t|,',line)[7]
     return Morph(surface, base, pos, pos1)
 
-
 def neko_cabocha():
-    sentence = list()
+    s = []
     for line in open('neko.txt.cabocha'):
         line = line.strip()
-        if line.startswith('EOS'):
-            if len(sentence) != 0:
-                yield sentence
-                sentence = list()
+        if line == 'EOS':
+            if len(s) != 0:
+                yield s
+                s = []
             continue
         if line.startswith('*'):
             continue
         morph = get_tag(line)
-        sentence.append(morph)
+        s.append(morph)
 
 if __name__ == "__main__":
     for i,line in enumerate(neko_cabocha()):

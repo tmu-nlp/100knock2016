@@ -6,7 +6,10 @@ ktsList = knock30.getMorphology("neko.txt.mecab")
 freqDic = defaultdict(lambda :0 )
 
 for item in ktsList:
-	freqDic[item["surface"]] += 1
+	try:
+		freqDic[item["surface"]] += 1
+	except :
+		print(item)
 
 # sortedDic = 
 for key, value  in sorted(freqDic.items(), key=lambda x:-x[1]):

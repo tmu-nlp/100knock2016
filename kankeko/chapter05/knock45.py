@@ -1,18 +1,16 @@
 from knock41 import get_cabocha
 verb = []
 mylist = []
-for sentence in get_cabocha():
-    for chunk in sentence:
-        if any(m.pos == "動詞" for m in chunk.morphs):
+for s in get_cabocha():
+    for chunk in s:
+        if (m.pos == "動詞" for m in chunk.morphs):
             mylist = []
-            for src_num in chunk.srcs:
-                src_chunk = sentence[src_num]
+            for src in chunk.srcs:
+                src_chunk = s[src]
                 if any(m.pos == "助詞" for m in chunk.morphs):
-                    line = [m.surface for m in chunk.morphs if m.pos == '助詞'][0]
-                if line is not None:
+                    line = str([m.surface for m in chunk.morphs if m.pos == '助詞'])
                     mylist.append(line)
-        if len(mylist) != 0:
-            if any(m.pos == "動詞" for m in chunk.morphs):
-                verb = [m.base for m in chunk.morphs if m.pos == '動詞'][0]
-                join_line = ' '.join(sorted(set(mylist)))
-                print('{}\t{}'.format(verb, join_line))
+        if any(m.pos == "動詞" for m in chunk.morphs):
+            mylist = set(mylist)
+            join_line = ' '.join(mylist)
+            print('{}\t{}'.format(str([m.base for m in chunk.morphs if m.pos == '動詞']), join_line))

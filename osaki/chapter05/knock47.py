@@ -10,7 +10,7 @@ wordtt=[]
 wordtp=[]
 wordtp_=[]
 wordtw=[]
-test=0
+#test=0
 c=0
 for line in mkChunkclass(mkMorphclass()):
     for phrase in line:
@@ -55,6 +55,6 @@ for line in mkChunkclass(mkMorphclass()):
             s=[]
             t=[]
         tf=0
-    test+=1
+#    test+=1
 #    if test==8:
 #        break

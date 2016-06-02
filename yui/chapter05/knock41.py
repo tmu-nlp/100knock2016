@@ -1,0 +1,123 @@
+# -*- coding: utf-8 -*-
+
+#41. 係り受け解析結果の読み込み（文節・係り受け）
+#40に加えて，文節を表すクラスChunkを実装せよ．このクラスは形態素（Morphオブジェクト）のリスト（morphs），係り先文節インデックス番号（dst），係り元文節インデックス番号のリスト（srcs）をメンバ変数に持つこととする．さらに，入力テキストのCaboChaの解析結果を読み込み，１文をChunkオブジェクトのリストとして表現し，8文目の文節の文字列と係り先を表示せよ．第5章の残りの問題では，ここで作ったプログラムを活用せよ．
+
+
+import re
+from collections import defaultdict
+
+
+class Morph:
+    def __init__(self, surface, base, pos, pos1):
+        self.surface = surface
+        self.base = base
+        self.pos = pos
+        self.pos1 = pos1
+
+    def __str__(self):  #組み込み関数str()とprint文によって呼び出される。戻り値は文字列オブジェクトでなければならん。
+        return "surface:{}, base:{}, pos:{}, pos1:{}".format(   #ここで切れてるのはなんかルールがある？
+        self.surface, self.base, self.pos, self.pos1)
+
+
+class Chunk:
+    def __init__(self, id, morphs, dst, srcs):
+        self.id = id
+        self.morphs = morphs
+        self.dst = dst
+        self.srcs = srcs
+
+    def __str__(self):
+        return 'id: {}, dst: {}, srcs: {}'.format(str(self.id), str(self.dst), ','.join(str(i) for i in self.srcs))
+
+    def join_surface(self):
+        return ''.join(m.surface for m in self.morphs)   #??
+
+    def join_surface_wo_symbol(self):
+        return ''.join(m.surface for m in self.morphs if m.pos != '記号') #??
+
+    #以下、コピペのみ。要確認。
+    def has_noun(self):
+        return any(m.pos == '名詞' for m in self.morphs)
+
+    def has_verb(self):
+        return any(m.pos == '動詞' for m in self.morphs)
+
+    def has_particle(self):
+        return any(m.pos == '助詞' for m in self.morphs)
+
+    def get_most_left_verb(self, form=lambda m: m.base):
+        if self.has_verb():
+            return [form(m) for m in self.morphs if m.pos == '動詞'][0]
+
+    def get_most_right_particle(self):
+        if self.has_particle():
+            return [m.surface for m in self.morphs if m.pos == '助詞'][-1]
+
+    def is_sahen_wo(self):
+        return len(self.morphs) >= 2 and self.morphs[0].pos1 == 'サ変接続' and self.morphs[1].surface == 'を'
+
+    def get_path_to_root(self, sentence, form=lambda ch: ch.join_surface_wo_symbol()):
+        path = [form(self)]
+        dst = self.dst
+        while dst != -1:
+            next_chunk = sentence[dst]
+            path.append(form(next_chunk))
+            dst = next_chunk.dst
+        return path
+
+    def get_path_to_id(self, sentence, target_id, form=lambda ch: ch.join_surface_wo_symbol(), include_id=True):
+        path = [form(self)]
+        dst = self.dst
+        current = self.id
+        while current != target_id:
+            next_chunk = sentence[dst]
+            path.append(form(next_chunk))
+            dst = next_chunk.dst
+            current = next_chunk.id
+        if not include_id:
+            path.pop(-1)
+        return path
+
+    def replace_noun(self, name):
+        return ''.join(m.surface if m.pos != '名詞' else name for m in self.morphs if m.pos != '記号')
+
+
+def get_sentences():
+    re_chunk = re.compile('\* (?P<id>[0-9]+?) (?P<dst>[0-9]+?)D .*')
+    re_chunk_no_dst = re.compile('\* (?P<id>[0-9]+?) (?P<dst>-[0-9]+?)D .*')
+    sentence = list()
+    id2srcs = defaultdict(list)
+    for line in open('neko.txt.cabocha'):
+        if line.startswith('EOS'):
+            if len(sentence) != 0:
+                yield sentence
+                id2srcs = defaultdict(list)
+                sentence = list()
+        elif line.startswith('*'):
+            match = re_chunk.match(line)
+            if match is None:
+                match = re_chunk_no_dst.match(line)
+            id = int(match.group('id'))
+            dst = int(match.group('dst'))
+            if dst != -1:
+                id2srcs[dst].append(id)
+            chunk = Chunk(id, list(), dst, id2srcs[id])
+            sentence.append(chunk)
+        else:
+            surface = line.split('\t')[0]
+            pos = line.split('\t')[1].split(',')[0]
+            pos1 = line.split('\t')[1].split(',')[1].replace('*', '')
+            base = line.split('\t')[1].split(',')[6]
+            morph = Morph(surface, base, pos, pos1)
+            chunk.morphs.append(morph)
+
+
+if __name__ == '__main__':
+    for i, sentence in enumerate(get_sentences()):
+        if i == 7:
+            for chunk in sentence:
+                print(chunk)
+                for morph in chunk.morphs:
+                    print('\t', morph)
+            break
