@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 from graphviz import Digraph
 from knock41 import get_sentences

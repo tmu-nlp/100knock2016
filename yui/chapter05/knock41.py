@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+
+#41. 係り受け解析結果の読み込み（文節・係り受け）
+#40に加えて，文節を表すクラスChunkを実装せよ．このクラスは形態素（Morphオブジェクト）のリスト（morphs），係り先文節インデックス番号（dst），係り元文節インデックス番号のリスト（srcs）をメンバ変数に持つこととする．さらに，入力テキストのCaboChaの解析結果を読み込み，１文をChunkオブジェクトのリストとして表現し，8文目の文節の文字列と係り先を表示せよ．第5章の残りの問題では，ここで作ったプログラムを活用せよ．
+
+
 import re
 from collections import defaultdict
 
@@ -9,9 +15,9 @@ class Morph:
         self.pos = pos
         self.pos1 = pos1
 
-    def __str__(self):
-        return 'surface:{}, base: {}, pos: {}, pos1: {}'.format(
-            self.surface, self.base, self.pos, self.pos1)
+    def __str__(self):  #組み込み関数str()とprint文によって呼び出される。戻り値は文字列オブジェクトでなければならん。
+        return "surface:{}, base:{}, pos:{}, pos1:{}".format(   #ここで切れてるのはなんかルールがある？
+        self.surface, self.base, self.pos, self.pos1)
 
 
 class Chunk:
@@ -25,11 +31,12 @@ class Chunk:
         return 'id: {}, dst: {}, srcs: {}'.format(str(self.id), str(self.dst), ','.join(str(i) for i in self.srcs))
 
     def join_surface(self):
-        return ''.join(m.surface for m in self.morphs)
+        return ''.join(m.surface for m in self.morphs)   #??
 
     def join_surface_wo_symbol(self):
-        return ''.join(m.surface for m in self.morphs if m.pos != '記号')
+        return ''.join(m.surface for m in self.morphs if m.pos != '記号') #??
 
+    #以下、コピペのみ。要確認。
     def has_noun(self):
         return any(m.pos == '名詞' for m in self.morphs)
 
