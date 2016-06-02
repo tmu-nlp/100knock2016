@@ -4,10 +4,8 @@ from nltk.tree import *
 
 def getNodes(parent):
     for node in parent:
-        if type(node) is Tree:
-            if node.label() == 'NP':
-                print(node, '\n')
-            getNodes(node)
+        for i in node.subtrees(filter=lambda x: x.label() == 'NP'):
+            print(i, '\n')
 
 
 def s_expression_analysis():
