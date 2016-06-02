@@ -17,19 +17,21 @@ for dependencies in dependencieslist:
             if dep.get("type") == 'nsubj':
                 V1 = dep.find('.//governor').text
                 S = dep.find('.//dependent').text
-                SV_list.append((V1, S))
+                idx = dep.find('.//governor').get("idx")
+                SV_list.append(('{0} {1}'.format(V1, idx), S))
 
             if dep.get("type") == 'dobj':
                 V2 = dep.find('.//governor').text
                 O = dep.find('.//dependent').text
-                VO_list.append((V2, O))
+                idx = dep.find('.//governor').get("idx")
+                VO_list.append(('{0} {1}'.format(V2, idx), O))
         SVO_dict = defaultdict(list)
         for key, value in SV_list:
             SVO_dict[key].append(value)
-        #for key, value in SVO_dict:
-            #if len(value) > 1:
-                #SVO_dict[key] = [' '.join(value)]
-        print (SVO_dict)
         for key, value in VO_list:
             SVO_dict[key].append(value)
-        print (SVO_dict)
+        #print (SVO_dict)
+        for key, value in SVO_dict.items():
+            if len(value) > 1:
+                print (value[0] + '\t' + key.split()[0] + '\t' + value[1])
+
