@@ -2,10 +2,9 @@ import xml.dom.minidom
 from nltk.tree import *
 
 
-def getNodes(parent):
-    for node in parent:
-        for i in node.subtrees(filter=lambda x: x.label() == 'NP'):
-            print(i, '\n')
+def getNodes(tree):
+    for node in tree.subtrees(filter=lambda x: x.label() == 'NP'):
+        print(node, '\n')
 
 
 def s_expression_analysis():
