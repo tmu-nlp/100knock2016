@@ -1,6 +1,6 @@
 import plyvel
 
-area_db=plyvel.DB('/tmp/test.ldb',create_if_missing=True)
+area_db=plyvel.DB('./arealdb/',create_if_missing=True)
 
 c=0
 for key,value in area_db:
