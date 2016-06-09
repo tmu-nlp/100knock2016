@@ -10,16 +10,22 @@ def predict_all(all_features, LR_model, sentence_list):
     prob_list = LR_model.predict_proba(make_features_vectors(all_features, features_list))
     return label_list, prob_list
 
-result = ""
+result = []
 ans_list = []
 sentence_list = []
 for line in open("sentiment.txt", "r"):
-    ans_list.append(int(line[:2]))
+    ans_list.append(line[:2])
     sentence_list.append(line[3:])
 
 label_list, prob_list = predict_all(all_features, LR_model, sentence_list)
 for ans, label, prob in zip(ans_list, label_list, prob_list):
-    result += "{}\t{}\t{}\n".format(ans, label, prob)
+    max_prob = max(prob)
+    if str(label) == "1":
+        label = "+1"
+    else:
+        label = str(label)
+    result.append([str(ans), label, str(max_prob)])
 
 if __name__ == "__main__":
-    print(result)
+    for line in result:
+        print("\t".join(line))

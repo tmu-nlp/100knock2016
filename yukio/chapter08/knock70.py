@@ -12,3 +12,5 @@ random.shuffle(document)
 f = open("sentiment.txt", "w")
 f.write("".join(document))
 f.close()
+
+#cut -b1 sentiment.txt | sort | uniq -c
