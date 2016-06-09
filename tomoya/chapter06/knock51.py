@@ -10,4 +10,4 @@ def getWords():
 if __name__ == "__main__":
     words = getWords()
     for word in words:
-        print(word.strip().strip(",").strip("."))
+        print(word.strip(",").strip("."))

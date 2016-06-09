@@ -4,7 +4,6 @@ import re
 word = re.compile("<word>(?P<word>.*)</word>")
 lemma = re.compile("<lemma>(?P<lemma>.*)</lemma>")
 pos = re.compile("<POS>(?P<POS>.*)</POS>")
-tag = list()
 for line in open("nlp.txt.out"):
     search_word = word.search(line)
     search_lemma = lemma.search(line)

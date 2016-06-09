@@ -31,7 +31,7 @@ for line in open("nlp.txt.out"):
             xml.append([word.group("word")])
         else:
             xml[int(s_id) - 1].append(word.group("word"))
-    if representative:
+    elif representative:
         rep_flag = True
     elif mention:
         rep_flag = False
