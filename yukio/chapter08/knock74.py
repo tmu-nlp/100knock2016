@@ -12,4 +12,4 @@ def predict_one(all_features, LR_model, sentence):
 
 if __name__ == "__main__":
     label, prob = predict_one(all_features, LR_model, sys.argv[1])
-    print("{}\nlabel:{}\nprob[-1, +1]:{}".format(sys.argv[1], label, *prob))
+    print("{}\nlabel:{}\nprob:{}".format(sys.argv[1], label, max(*prob)))
