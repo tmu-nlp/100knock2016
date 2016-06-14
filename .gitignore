@@ -6,6 +6,7 @@
 *
 !knock*.py
 !*.cs
+!*.cgi
 !chapter*/
 !*/
 update_progress.py
