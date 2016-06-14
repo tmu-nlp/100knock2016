@@ -19,5 +19,5 @@ def get_artist_tags(name):
 
 if __name__ == "__main__":
     get_artist_tags_DB()
-    for tag_dict in get_artist_tags("Baya"):
+    for tag_dict in get_artist_tags("Oasis"):
         print(tag_dict.decode("utf-8"))
