@@ -1,10 +1,8 @@
+from pymongo import MongoClient
 import sys
-import json
 
-for line in open(sys.argv[1]):
-    data=json.loads(line)
-    if "aliases" in data:
-        for item in data["aliases"]:
-            if item["name"]==sys.argv[2]:
-                print(data["name"])
-                break
+client=MongoClient()
+db=client.artist_db
+collection=db.artist_collection
+
+print(collection.find_one({"aliases.name":sys.argv[1]}))
