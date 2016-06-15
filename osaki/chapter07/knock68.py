@@ -1,13 +1,13 @@
-import sys
-import json
+from pymongo import MongoClient
+
+client=MongoClient()
+db=client.artist_db
+collection=db.artist_collection
 
 d={}
-for line in open(sys.argv[1]):
-    data=json.loads(line)
-    if "tags" in data and "rating" in data:
-        for item in data["tags"]:
-            if item["value"]=="dance":
-                d[data["name"]]=data["rating"]["count"]
+for item in collection.find({"tags.value":"dance"}):
+    if "rating" in item:
+        d[item["name"]]=item["rating"]["count"]
 
 c=0
 for key,value in sorted(d.items(),key=lambda x:x[1],reverse=True):
