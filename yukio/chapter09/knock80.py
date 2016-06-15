@@ -1,6 +1,6 @@
-f = open("tokens.txt", "w")
+f = open("tokens_80.txt", "w")
 
-for line in open("enwiki-20150112-400-r10-105752.txt", "r"):
+for line in open("enwiki-20150112-400-r100-10576.txt", "r"):
     tokens = line.strip("\n").split(" ")
     result = []
     for token in tokens:
