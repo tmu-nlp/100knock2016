@@ -20,7 +20,7 @@ def dependency_parsing():
                     lbldep = dependent.firstChild.data
                     dot.node(str(iddep), lbldep)
                     dot.node(str(idgov), lblgov)
-                    dot.edge(str(iddep), str(idgov))
+                    dot.edge(str(idgov), str(iddep))
             dot.render('png-knock57', cleanup=True)
             exit()
 
