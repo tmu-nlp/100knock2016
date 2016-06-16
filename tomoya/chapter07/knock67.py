@@ -4,4 +4,5 @@ client = MongoClient()
 db = client.knock64_database
 collection = db.knock64_collection
 for data in collection.find({'aliases.name': sys.argv[1]}):
-    print(data)
+    for key in data.keys():
+        print('{}: {}'.format(key, data[key]))
