@@ -45,7 +45,7 @@ for attr, txt in zip(attributes, txt):
         find_dict[attr] = txt
 data_list = ['name', 'aliases', 'tags', 'area', 'begin', 'end']
 data_dict = {'aliases': 'name', 'tags': 'value'}
-time = ['年', '月', '日']
+time_str = ['年', '月', '日']
 for data in collection.find(find_dict, {'gid': 0, 'id': 0, '_id': 0}).sort([('rating.count', -1)]):
     print("<tr>")
     for x in data_list:
@@ -57,9 +57,9 @@ for data in collection.find(find_dict, {'gid': 0, 'id': 0, '_id': 0}).sort([('ra
         elif x not in data.keys():
             print("<td></td>")
         elif x in ['begin', 'end']:
-            a = zip(map(str, sorted(data[x].values(), reverse=True)), time)
+            time = zip(map(str, [value for key, value in sorted(data[x].items(), key=lambda x: x[0], reverse=True)]), time_str)
             print("<td>")
-            for t in a:
+            for t in time:
                 print("".join(t), end="")
             print("</td>")
         else:
