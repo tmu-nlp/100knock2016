@@ -8,6 +8,7 @@ def get_artist_DB():
         data = json.loads(line)
         if "name" in data and "area" in data:
             db.put(data["name"].encode("utf-8"), data["area"].encode("utf-8"))
+    db.close()
 
 
 if __name__ == "__main__":
