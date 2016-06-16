@@ -5,4 +5,5 @@ if __name__ == '__main__':
 	for line in sys.stdin:
 		wlist = line.split()
 		for word in wlist:
-			print("%s\n" % (word))
+			print("%s" % (word))
+		print("")
