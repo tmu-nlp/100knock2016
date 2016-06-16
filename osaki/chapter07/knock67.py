@@ -5,4 +5,5 @@ client=MongoClient()
 db=client.artist_db
 collection=db.artist_collection
 
-print(collection.find_one({"aliases.name":sys.argv[1]}))
+for item in collection.find({"aliases.name":sys.argv[1]}):
+    print(item)
