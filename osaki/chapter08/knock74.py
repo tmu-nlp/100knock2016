@@ -16,6 +16,7 @@ for line in open(sys.argv[2]):
        item=stemmer.stem(item)
        score+=d[item]
    p_pos=math.exp(score)/(1+math.exp(score))
+   print(p_pos)
    if p_pos > 0.5:
        print("+1 "+line.strip("\n"))
    else:
