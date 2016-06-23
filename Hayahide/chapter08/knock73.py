@@ -23,8 +23,8 @@ def feature_vector(feature_list, sentence):
 
 if __name__ == '__main__':
     feature_list = list()
-    for line in open('knock72_result.txt'):
-        word, value = line.split('\t')
+    for word in open('knock72_result.txt'):
+        word = word.strip('\n')
         feature_list.append(word)
 
     polarity = list()
@@ -36,6 +36,7 @@ if __name__ == '__main__':
         sentence = feature_making(sentence)
         feature.append(feature_vector(feature_list, sentence))
 
+    print('Now fitting...')
     LR = LogisticRegression(C = 1000)
     LR.fit(feature, polarity)
     joblib.dump(LR, 'LR.pkl')

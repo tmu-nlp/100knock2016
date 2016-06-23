@@ -4,15 +4,15 @@ from nltk import stem
 
 stemming = stem.PorterStemmer()
 
-posinega = defaultdict(int)
+feature_list = list()
 for line in open('sentiment.txt'):
     word_list = line.strip('\n').split()
-    polarity = int(word_list.pop(0))
+    word_list.pop(0)
     for word in word_list:
         word = stemming.stem(word)
         if stop(word) == False:
-            posinega[word] += polarity
+            feature_list.append(word)
 
-for key, value in sorted(posinega.items(), key = lambda x:x[1]):
-    print(key + '\t' + str(value))
+for word in feature_list:
+    print(word)
         
