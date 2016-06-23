@@ -19,7 +19,7 @@ def predict_function():
         if int(p) == y:
             count += 1
         total += 1
-    print("{}%".format(count/total*100))
+    print(count/total)
 
 
 if __name__ == '__main__':
