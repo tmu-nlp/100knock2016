@@ -1,6 +1,6 @@
-from knock41 import get_cabocha
+from knock41 import get_sentences
 
-for sentence in get_cabocha():
+for sentence in get_sentences():
     for chunk in sentence:
         if chunk.dst != -1:
             tgt_chunk = sentence[chunk.dst]
