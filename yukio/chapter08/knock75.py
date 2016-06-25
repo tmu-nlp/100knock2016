@@ -1,8 +1,12 @@
-from knock73 import LR_model, all_features
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.externals import joblib
+
+LR_model = joblib.load('model.pkl')
+DictoVec = joblib.load('vec.pkl')
 
 weight = {}
-for feature, value in zip(all_features, *LR_model.coef_):
+for feature, value in zip(DictoVec.get_feature_names(), *LR_model.coef_):
     weight[feature] = value
 
 print("High_Top10")

@@ -1,30 +1,30 @@
 from knock72 import extract_feature
-from knock73 import make_features_vectors, all_features, LR_model
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction import DictVectorizer
+from sklearn.externals import joblib
 
-def predict_all(all_features, LR_model, sentence_list):
+LR_model = joblib.load('model.pkl')
+DictoVec = joblib.load('vec.pkl')
+
+def predict_all(LR_model, sentence_list):
     features_list = []
     for sentence in sentence_list:
         features_list.append(extract_feature(sentence))
-    label_list = LR_model.predict(make_features_vectors(all_features, features_list))
-    prob_list = LR_model.predict_proba(make_features_vectors(all_features, features_list))
+    label_list = LR_model.predict([[features[feature] for feature in DictoVec.get_feature_names()] for features in features_list])
+    prob_list = LR_model.predict_proba([[features[feature] for feature in DictoVec.get_feature_names()] for features in features_list])
     return label_list, prob_list
 
 result = []
 ans_list = []
 sentence_list = []
 for line in open("sentiment.txt", "r"):
-    ans_list.append(line[:2])
+    ans_list.append(int(line[:2]))
     sentence_list.append(line[3:])
 
-label_list, prob_list = predict_all(all_features, LR_model, sentence_list)
+label_list, prob_list = predict_all(LR_model, sentence_list)
 for ans, label, prob in zip(ans_list, label_list, prob_list):
     max_prob = max(prob)
-    if str(label) == "1":
-        label = "+1"
-    else:
-        label = str(label)
-    result.append([str(ans), label, str(max_prob)])
+    result.append([str(ans), str(label), str(max_prob)])
 
 if __name__ == "__main__":
     for line in result:
