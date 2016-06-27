@@ -1,4 +1,3 @@
-from knock82 import extract_contexts
 from collections import defaultdict
 
 def measure_frequency():
@@ -7,7 +6,8 @@ def measure_frequency():
     f_c = defaultdict(lambda: 0)
     N = 0
 
-    for token, context in extract_contexts():
+    for line in open("token_context_82.txt", "r"):
+        token, context = line.strip("\n").split("\t")
         f_t_c["{} {}".format(token, context)] += 1
         f_t[token] += 1
         f_c[context] += 1
