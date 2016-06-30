@@ -1,29 +1,19 @@
-from knock72 import getFeatureList
+from knock72 import getFeature
 from sklearn.linear_model import LogisticRegression
 from sklearn.externals import joblib
+from sklearn.feature_extraction import DictVectorizer
 
-
-def getFeatureVector(feature_list, all_feature):
-    feature_vector = list()
-    for feature in sorted(all_feature):
-        if feature in feature_list:
-            feature_vector.append(1)
-        else:
-            feature_vector.append(0)
-    return feature_vector
-
-
-def getFeatureMatrix(input_file):
-    all_feature, features = getFeatureList(input_file)
-    feature_matrix = list()
-    label_vector = list()
-    for label, feature_vector in features:
-        feature_matrix.append(getFeatureVector(feature_vector, all_feature))
-        label_vector.append(label)
-    return feature_matrix, label_vector
 
 if __name__ == '__main__':
-    feature_matrix, label_vector = getFeatureMatrix('sentiment.txt')
+    dic2vec = DictVectorizer()
+    features = list()
+    y = list()
+    for line in open('sentiment.txt'):
+        word_list = line[3:].strip('\n').strip().split()
+        label = line[:2]
+        features.append(getFeature(word_list))
+        y.append(int(label))
+    x = dic2vec.fit_transform(features)
     lr = LogisticRegression()
-    lr.fit(feature_matrix, label_vector)
+    lr.fit(x, y)
     joblib.dump(lr, 'lr.pkl')

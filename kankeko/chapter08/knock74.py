@@ -14,12 +14,12 @@ def predict_function():
     pred = predict_doc.predict(X)
     count = 0
     total = 0
-    for p, y in zip(pred, y_train):
-        print(p, y)
-        if int(p) == y:
+    for a, y in zip(pred, y_train):
+        print(a, y)
+        if int(a) == y:
             count += 1
         total += 1
-    print("{}%".format(count/total*100))
+    print(count/total)
 
 
 if __name__ == '__main__':

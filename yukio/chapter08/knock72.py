@@ -1,12 +1,13 @@
 from knock71 import include_stopword
+from collections import defaultdict
 from nltk import stem
 
 def extract_feature(sentence):
-    features = []
+    features = defaultdict(lambda: 0)
     stemmer = stem.PorterStemmer()
     for word in sentence.split():
-        if include_stopword(word) == False:
-            features.append(stemmer.stem(word))
+        if not include_stopword(word):
+            features[stemmer.stem(word)] += 1
     return features
 
 label_list = []
@@ -18,4 +19,4 @@ for line in open("sentiment.txt", "r"):
 
 if __name__ == "__main__":
     for label, features in zip(label_list, features_list):
-        print("{} {}".format(label, features))
+        print("{} {}".format(label, dict(features)))
