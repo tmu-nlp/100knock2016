@@ -12,5 +12,7 @@ def extract_contexts():
     return result
 
 if __name__ == "__main__":
+    f = open("token_context_82.txt", "w")
     for token, context in extract_contexts():
-        print("{}\t{}".format(token, context))
+        f.write("{}\t{}\n".format(token, context))
+    f.close()
