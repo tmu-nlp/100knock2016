@@ -4,15 +4,15 @@ from nltk import stem
 
 stemming = stem.PorterStemmer()
 
-feature_list = list()
+feature_dict = defaultdict(int)
 for line in open('sentiment.txt'):
     word_list = line.strip('\n').split()
     word_list.pop(0)
     for word in word_list:
         word = stemming.stem(word)
         if stop(word) == False:
-            feature_list.append(word)
+            feature_dict[word] += 1
 
-for word in feature_list:
-    print(word)
+for word, freq in sorted(feature_dict.items()):
+    print(word + '\t' + str(freq))
         

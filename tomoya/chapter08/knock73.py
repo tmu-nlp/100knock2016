@@ -17,3 +17,4 @@ if __name__ == '__main__':
     lr = LogisticRegression()
     lr.fit(x, y)
     joblib.dump(lr, 'lr.pkl')
+    joblib.dump(dic2vec, 'dic2vec.pkl')

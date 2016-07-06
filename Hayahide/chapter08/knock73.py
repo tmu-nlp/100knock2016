@@ -1,5 +1,6 @@
 from collections import defaultdict
 from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction import DictVectorizer
 from sklearn.externals import joblib
 from nltk import stem
 from knock71 import stop
@@ -14,29 +15,25 @@ def feature_making(sentence):
     return ans_list
 
 
-def feature_vector(feature_list, sentence):
-    vector = list()
-    for word in feature_list:
-        vector.append(1) if word in sentence else vector.append(0)
+def feature_vector(sentence):
+    vector = defaultdict(int)
+    for word in sentence:
+        vector[word] += 1
     return vector
 
 
 if __name__ == '__main__':
-    feature_list = list()
-    for word in open('knock72_result.txt'):
-        word = word.strip('\n')
-        feature_list.append(word)
-
     polarity = list()
     feature = list()
+    dicvec = DictVectorizer()
     for line in open('sentiment.txt'):
         sentence = line.strip('\n').split()
         polar = sentence.pop(0)
         polarity.append(int(polar))
-        sentence = feature_making(sentence)
-        feature.append(feature_vector(feature_list, sentence))
+        sent_feature = feature_making(sentence)
+        feature.append(feature_vector(sent_feature))
+    x_feature = dicvec.fit_transform(feature)
 
-    print('Now fitting...')
-    LR = LogisticRegression(C = 1000)
-    LR.fit(feature, polarity)
+    LR = LogisticRegression()
+    LR.fit(x_feature, polarity)
     joblib.dump(LR, 'LR.pkl')
