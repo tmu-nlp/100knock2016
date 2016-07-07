@@ -17,7 +17,10 @@ def calc_score(result):
             pos_pre_count += 1
     
     accuracy = correct_count / total_count
-    precision = pos_cor_count / pos_pre_count
+    if pos_pre_count != 0:
+        precision = pos_cor_count / pos_pre_count
+    else:
+        precision = 1.0
     recall = pos_cor_count / pos_ans_count
     f1score = 2 * precision * recall / (precision + recall)
 
