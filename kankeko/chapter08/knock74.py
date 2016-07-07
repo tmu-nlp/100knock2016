@@ -6,20 +6,27 @@ from collections import Counter
 
 def predict_function():
     x_list = []
+    line_list = []
+    line_dict = {}
     predict_doc = joblib.load('logreg.pkl')
+    feature_doc = joblib.load("word_vec.pkl")
     y_train, x_train = get_feature()
+    line = "bad bad good good"
+    line_list = line.split()
     for line in x_train:
-        x_list.append(dict(Counter(line)))
+        for key in line:
+            line_dict[key] = 0
+    line_dict.update(dict(Counter(line_list)))
+    for a in sorted(line_dict.items(), key = lambda x:x[1]):
+        print(a)
+    x_list.append(line_dict)
+    print(x_list)
+    exit()
     X = DictVectorizer().fit_transform(x_list)
     pred = predict_doc.predict(X)
-    count = 0
-    total = 0
-    for a, y in zip(pred, y_train):
-        print(a, y)
-        if int(a) == y:
-            count += 1
-        total += 1
-    print(count/total)
+    prob = predict_doc.predict_proba(X)
+    for pred, prob in zip(pred,prob):
+        print(pred, prob)
 
 
 if __name__ == '__main__':
