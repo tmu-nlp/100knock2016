@@ -19,4 +19,4 @@ pred_proba = clf.predict_proba(x)
 
 for pre, t, (prob_n, prob_p) in zip(pred, y, pred_proba):
     prob = prob_n if pre == -1 else prob_p
-    print('{}\t{}\t{}'.format(t, t, prob))
+    print('{}\t{}\t{}'.format(t, pre, prob))
