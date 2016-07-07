@@ -22,7 +22,7 @@ if __name__ == "__main__":
     clf = grid_search.GridSearchCV(lr, parameters)
     X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, polarity_list, test_size=0.2, random_state=None)
     res = clf.fit(X_train, y_train)
-    prob = clf.predict_proba(X_test)[:, 1] #????
+    prob = clf.predict_proba(X_test)[:, 1] #???? 正例をみてる
     precision, recall, thresholds = precision_recall_curve(y_test, prob)
 
     #recall = metrics.recall_score(polarity_list, predicted)
