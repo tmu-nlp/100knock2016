@@ -35,5 +35,4 @@ if __name__ == '__main__':
     polarity = '+1' if LR.predict(feature)[0] == 1 else '-1'
     probability = LR.predict_proba(feature)[0]
 
-    print('{}: {}'.format(polarity, probability))
-    #print('{}: {}'.format(polarity, max(probability[0], probability[1])))
+    print('{}: {}'.format(polarity, max(probability[0], probability[1])))
