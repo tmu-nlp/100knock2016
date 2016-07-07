@@ -13,6 +13,6 @@ for i in range(50):
     rec+=[result[2]]
     thre+=[i]
 
-plt.plot(thre,pre,label="precision",color="red")
-plt.plot(thre,rec,label="recall",color="blue")
+print(result)
+plt.plot(pre,rec,color="red")
 plt.show()
