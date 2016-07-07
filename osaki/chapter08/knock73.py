@@ -1,36 +1,35 @@
 import sys
-import math
-from knock72 import mk_feature
-from nltk.corpus import stopwords
-from nltk import stem
 
-stemmer=stem.PorterStemmer()
-stoplist=stopwords.words("english")+[",",".","!","?",";",":","\n","\t","(",")"," "]
+def rog_learn(c,f):
+    import math
+    from knock72 import mk_feature
+    from nltk import stem
+    from collections import defaultdict
 
-d_f=mk_feature()
-d={}
-al=0.6
+    stemmer=stem.PorterStemmer()
+    d=defaultdict(lambda:0)
+    al=0.6
+    count=0
+    while(count<c):
+        count+=1
+        for line in f:#.split("\n"):
+            y=line.split(" ")[0]
+            x=mk_feature(line)
+            score=0
+            for key,value in x.items():
+                score+=d[key]*value
+            if y=="+1":
+                y=1
+            elif y=="-1":
+                y=-1
+            dp_dw=y*math.exp(score)/((1+math.exp(score))**2)
+            for key,value in x.items():
+                d[key]+=dp_dw*value*al
+        al=al*0.8
+    return d
 
-for key,value in d_f.items():
-    d[key]=0
-
-count=0
-while(count<int(sys.argv[1])):
-    count+=1
-    for line in open("sentiment.txt","r"):
-        y=float(line.split(" ")[0])
-        x=list()
-        score=0
-        for item in line.strip("\n").split(" ")[1:]:
-            item=stemmer.stem(item)
-            if item not in stoplist:
-                if item in d:
-                    score+=d[item]
-                    x+=[item]
-        dp_dw=y*math.exp(score)/((1+math.exp(score))**2)
-        for item in x:
-            d[item]+=dp_dw*al
-    al=al*0.8
-
-for key,value in d.items():
-    print(key+"\t"+str(value))
+if __name__=="__main__":
+    s=""
+    d=rog_learn(int(sys.argv[1]),open(sys.argv[2]))
+    for key,value in d.items():
+        print(key+"\t"+str(value))

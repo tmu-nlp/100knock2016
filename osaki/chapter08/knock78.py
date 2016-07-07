@@ -14,4 +14,4 @@ for i in range(len(k)):
     d=rog_learn(10,train)
     k_4=k[:i]+k[i+1:]
     test="\n".join(k_4).strip("\n")
-    print(acc_(test))
+    print(acc_(test,d,0.5))
