@@ -20,6 +20,8 @@ def predict_function():
     for a in sorted(line_dict.items(), key = lambda x:x[1]):
         print(a)
     x_list.append(line_dict)
+    print(x_list)
+    exit()
     X = DictVectorizer().fit_transform(x_list)
     pred = predict_doc.predict(X)
     prob = predict_doc.predict_proba(X)

@@ -26,7 +26,7 @@ def plot_p_r(train_features, train_labels):
             recall = np.array([])
 
             for prob in prediction:
-                if prob[0] > thd:
+                if prob[1] > thd:
                     y_predict.append(1)
                 else:
                     y_predict.append(-1)
