@@ -17,5 +17,6 @@ x = dic2vec.fit_transform(features)
 pred = clf.predict(x)
 pred_proba = clf.predict_proba(x)
 
-for pre, proba, sent in zip(pred, pred_proba, sents):
-    print(pre, proba, sent)
+for pre, t, (prob_n, prob_p) in zip(pred, y, pred_proba):
+    prob = prob_n if pre == -1 else prob_p
+    print('{}\t{}\t{}'.format(t, pre, prob))
