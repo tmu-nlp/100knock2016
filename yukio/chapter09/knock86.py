@@ -1,9 +1,7 @@
-import numpy as np
+import pickle
 
-vec = {}
-for line in open("word_vec_85.txt", "r"):
-    token, vector = line.strip("\n").split("\t")
-    vec[token] = np.array(vector)
+with open("word_vec_85.pickle", "rb") as f:
+    vec = pickle.load(f)
 
 print("vec[United_States]")
 print(vec["United_States"])
