@@ -3,6 +3,7 @@ from collections import defaultdict
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.decomposition import PCA
 import numpy as np
+import pickle
 
 def dimension_compression():
     X_t_c = make_matrix()
@@ -13,9 +14,13 @@ def dimension_compression():
         contexts_list.append(contexts)
 
     pca = PCA(n_components = 300)
-    DictoVec = DictVectorizer(sparse = False)
+    DictoVec = DictVectorizer(sparse = True)
 
-    vec_list = pca.fit_transform(DictoVec.fit_transform(contexts_list))
+    sparse = DictoVec.fit_transform(contexts_list)
+
+    print(sparse.shape)
+
+    vec_list = pca.fit_transform(sparse.todense())
     
     word_vec = {}
     for token, vec in zip(token_list, vec_list):
@@ -25,8 +30,5 @@ def dimension_compression():
 
 if __name__ == "__main__":
     word_vec = dimension_compression()
-    f = open("word_vec_85.txt", "w")
-    for key, value in sorted(word_vec.items()):
-        print("vec({}) : {}".format(key, value))
-        f.write("{}\t{}\n".format(key, value))
-    f.close()
+    with open("word_vec_85.pickle", "wb") as f:
+        pickle.dump(word_vec, f)
