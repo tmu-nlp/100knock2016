@@ -13,6 +13,6 @@ def get_feature(sentence):
 
 
 if __name__ == '__main__':
-    s = 'This is a test sentence .'
+    s = 'This is a test sentence test .'
     print(s)
     print(get_feature(s))
