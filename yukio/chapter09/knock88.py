@@ -1,10 +1,7 @@
 from knock87 import cos_sim
 import pickle
 
-if __name__ == "__main__":
-    with open("word_vec_85.pickle", "rb") as f:
-        vec = pickle.load(f)
-    
+def knock_88(vec):
     sim_dic = {}
     for token, vector in sorted(vec.items()):
         if token != "England":
@@ -12,3 +9,9 @@ if __name__ == "__main__":
 
     for (token, sim), i in zip(sorted(sim_dic.items(), key = lambda x: x[1], reverse = True), range(0, 10)):
         print("{}\t{}".format(token, sim))
+
+if __name__ == "__main__":
+    with open("word_vec_85.pickle", "rb") as f:
+        vec = pickle.load(f)
+    
+    knock_88(vec)
