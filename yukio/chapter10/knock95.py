@@ -1,9 +1,7 @@
 import numpy as np
 
 def spearman(X, Y):
-    print(X)
-    print(Y)
-    return 1.0 - (6 * sum(X - Y) ** 2) / float(len(X) ** 3 - len(X))
+    return 1.0 - (6 * sum((X - Y) ** 2)) / float(len(X) ** 3 - len(X))
 
 human_list = []
 v85_list = []
