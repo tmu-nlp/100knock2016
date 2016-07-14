@@ -1,16 +1,18 @@
 import numpy as np
-from knock77 import cos_sim
-    
-if __name__ == "__main__":
-    vec = {}
-    for line in open("word_vec_85.txt", "r"):
-        token, vector = line.strip("\n").split("\t")
-        vec[token] = np.array(vector)
-    
+from knock87 import cos_sim
+import pickle
+
+def knock_89(vec):
     calc_vector = vec["Spain"] - vec["Madrid"] + vec["Athens"]
     sim_dic = {}
-    for token, vector in sorted(vec.items()):
+    for token, vector in sorted(vec.items()): 
         sim_dic[token] = cos_sim(calc_vector, vector)
 
-    for token, sim in sorted(sim_dic.items(), key = lambda x: x[1], reverse = True):
-        print("{}\t{}".format(token, sim))
+    for (token, sim), i in zip(sorted(sim_dic.items(), key = lambda x: x[1], reverse = True), range(0, 10)):
+        print("{}\t{}".format(token, sim))                                               
+
+if __name__ == "__main__":
+    with open("word_vec_85.pickle", "rb") as f:
+        vec = pickle.load(f)
+    
+    knock_89(vec)

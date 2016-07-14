@@ -7,7 +7,7 @@ def make_matrix():
     X_t_c = defaultdict(lambda: defaultdict(lambda: 0))
 
     for key, value in sorted(f_t_c.items()):
-        if value >= 10:
+        if value >= 20:
             token, context = key.split(" ")
             if math.log(N * value / (f_t[token] * f_c[context]), 2) > 0:
                 X_t_c[token][context] = math.log(N * value / (f_t[token] * f_c[context]), 2)
