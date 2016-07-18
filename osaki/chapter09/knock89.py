@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 X=np.load("knock85.npy")
 
@@ -12,7 +13,7 @@ v1=X[ids_t["Spain"]]-X[ids_t["Madrid"]]+X[ids_t["Athens"]]
 
 for key,value in ids_t.items():
     v2=X[value]
-    d[key]=np.dot(v1,v2)/(np.dot(v1,v1.T)*np.dot(v2,v2.T))
+    d[key]=np.dot(v1,v2)/math.sqrt(np.dot(v1,v1.T)*np.dot(v2,v2.T))
 
 c=0
 for key,value in sorted(d.items(),key=lambda x:x[1],reverse=True):
