@@ -8,15 +8,15 @@ def getSpearmanr(infile):
         words = line.strip('\n').split('\t')
         x_list.append(float(words[2]))
         y_list.append(float(words[3]))
-    p, r = spearmanr(x_list, y_list)
-    return p, r
+    rho, pval = spearmanr(x_list, y_list)
+    return rho, pval
 
 
 def main():
-    p, r = getSpearmanr('./knock85at94.data')
-    print('knock85\np:{}\nr:{}'.format(p, r))
-    p, r = getSpearmanr('./knock94.data')
-    print('knock94\np:{}\nr:{}'.format(p, r))
+    rho, pval = getSpearmanr('./knock85at94.data')
+    print('knock85\nrho:{}\npval:{}'.format(rho, pval))
+    rho, pval = getSpearmanr('./knock94.data')
+    print('knock94\nrho:{}\npval:{}'.format(rho, pval))
 
 if __name__ == '__main__':
     main()

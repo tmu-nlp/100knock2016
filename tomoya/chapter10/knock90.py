@@ -1,38 +1,35 @@
 from gensim.models import word2vec
 import os
-
+import sys
+sys.path.append("/Users/tomoya/Work/100knock2016/tomoya/chapter09")
+from knock86 import knock86
+from knock87 import knock87
+from knock88 import knock88
+from knock89 import knock89
 
 def main():
     sentences = word2vec.Text8Corpus("./enwiki-corpus2.txt")
     if "knock90.model" in os.listdir("/Users/tomoya/Work/100knock2016/tomoya/chapter10/"):
         model = word2vec.Word2Vec.load("knock90.model")
     else:
-        model = word2vec.Word2Vec(sentences, size=200, min_count=20, window=15)
+        model = word2vec.Word2Vec(sentences, size=300)
         model.save("knock90.model")
+
+    vec = {}
+    for word in model.vocab.keys():
+        vec[word] = model[word]
+
     print("knock86.py")
-    print(model['United_States'], end='\n\n')
+    print(knock86(vec), end='\n\n')
     print("knock87.py")
-    print(sim_2word(model, 'United_States', 'U.S'), end='\n\n')
+    print(knock87(vec), end='\n\n')
     print("knock88.py")
-    s(model, ['England'])
-    print("knock89.py")
-    vec = model['Spain'] - model['Madrid'] + model['Athens']
-    for sim in model.similar_by_vector(vec):
-        print(sim)
-
-
-def sim_2word(model, w1, w2):
-    return model.similarity(w1, w2)
-
-
-def s(model, posi, nega=[], n=10):
-    cnt = 1
-    result = model.most_similar(positive=posi, negative=nega, topn=n)
-    for r in result:
-        print(cnt, ' ', r[0], ' ', r[1])
-        cnt += 1
+    for word in knock88(vec):
+        print(word)
     print()
-
+    print("knock89.py")
+    for word in knock89(vec):
+        print(word)
 
 if __name__ == '__main__':
     main()
