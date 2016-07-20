@@ -1,14 +1,18 @@
 from scipy.stats import spearmanr
+import numpy as np
 
 
 def getSpearmanr(infile):
     x_list = list()
     y_list = list()
-    for line in open(infile, 'r'):
+    for i, line in enumerate(open(infile, 'r')):
         words = line.strip('\n').split('\t')
-        x_list.append(float(words[2]))
-        y_list.append(float(words[3]))
-    rho, pval = spearmanr(x_list, y_list)
+        x_list.append((i, float(words[2])))
+        y_list.append((i, float(words[3])))
+    x_list = sorted(x_list, key=lambda x:x[1])
+    y_list = sorted(y_list, key=lambda x:x[1])
+    x_list, y_list = np.array(x_list), np.array(y_list)
+    rho, pval = spearmanr(x_list[:, 0], y_list[:, 0])
     return rho, pval
 
 
