@@ -17,14 +17,10 @@ for i, line in enumerate(open("combined.tab")):
         word1, word2, val = line.strip().split()
 
         if word1 in vec_85 and word2 in vec_85:
-            f_85.write("{} {}\n".format(line.strip(), cos_sim(vec_85[word1], vec_85[word2])))
-        else:
-            f_85.write("{} 0.0\n".format(line.strip()))
+            f_85.write("{}\t{}\n".format(line.strip(), cos_sim(vec_85[word1], vec_85[word2])))
 
         if word1 in vec_90.vocab.keys() and word2 in vec_90.vocab.keys():
-            f_90.write("{} {}\n".format(line.strip(), cos_sim(vec_90[word1], vec_90[word2])))
-        else:
-            f_90.write("{} 0.0\n".format(line.strip()))
+            f_90.write("{}\t{}\n".format(line.strip(), cos_sim(vec_90[word1], vec_90[word2])))
 
 f_85.close()
 f_90.close()
