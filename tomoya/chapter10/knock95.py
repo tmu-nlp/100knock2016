@@ -11,8 +11,10 @@ def getSpearmanr(infile):
         y_list.append((i, float(words[3])))
     x_list = sorted(x_list, key=lambda x:x[1])
     y_list = sorted(y_list, key=lambda x:x[1])
+    x_list = sorted([(x, i) for i, (x, score) in enumerate(x_list)], key=lambda x: x[0])
+    y_list = sorted([(y, i) for i, (y, score) in enumerate(y_list)], key=lambda x: x[0])
     x_list, y_list = np.array(x_list), np.array(y_list)
-    rho, pval = spearmanr(x_list[:, 0], y_list[:, 0])
+    rho, pval = spearmanr(x_list[:, 1], y_list[:, 1])
     return rho, pval
 
 
