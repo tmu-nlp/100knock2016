@@ -1,9 +1,7 @@
 from gensim.models import word2vec
 from knock96 import mk_country
-import scipy
-import numpy
 from matplotlib.pyplot import show
-from scipy.cluster.hierarchy import linkage,dendrogram
+from scipy.cluster.hierarchy import ward,dendrogram
 
 model=word2vec.Word2Vec.load("knock90.model")
 
@@ -15,6 +13,6 @@ for key,value in d.items():
     vec_list+=[value]
     name_list+=[key]
 
-result=linkage(vec_list,metric="chebyshev",method="average")
+result=ward(vec_list)
 dendrogram(result,labels=name_list)
 show()
