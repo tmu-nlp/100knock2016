@@ -1,17 +1,21 @@
-from scipy import io, sparse
+from knock84 import PPMI_matrix
+from sklearn.feature_extraction import DictVectorizer
 from scipy.sparse.linalg import svds
 import numpy as np
 import pickle
 
 
 def dimension_reduction():
-    X = io.loadmat('matrix')['PPMI']
+    X = PPMI_matrix()
     word_list = list()
-    for line in open('word_list.txt', 'r'):
-        key, value = line.strip('\n').split('\t')
-        word_list.append(key)
+    vecdict_list = list()
+    for word, vector in sorted(X.items()):
+        word_list.append(word)
+        vecdict_list.append(dict(vector))
+    Dic2Vec = DictVectorizer(sparse=True)
+    vector_list = Dic2Vec.fit_transform(vecdict_list)
 
-    X_svd = svds(X, 300)
+    X_svd = svds(vector_list, 300)
     X_pca = np.dot(X_svd[0], np.diag(X_svd[1]))
     word_matrix = dict()
     for word, vector in zip(word_list, X_pca):
