@@ -8,7 +8,7 @@ with open('../chapter09/knock85_result.dump', 'rb') as f:
 w2v_model = word2vec.Word2Vec.load('knock90.model')
 
 w_file1 = open('knock92_vector.txt', 'w')
-w_file2 = open('knock92_w2v.txt', ‘w’)l
+w_file2 = open('knock92_w2v.txt', 'w')
 for line in open('knock91_result.txt'):
     line = line.strip('\n')
     similar_word = ''
