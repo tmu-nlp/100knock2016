@@ -21,7 +21,7 @@ for line in open("knock91.txt","r"):
             if ans > best:
                 best=ans
                 result=key
-    f.write(" ".join(line.strip("\n").split()[0:3])+" "+result+"\n")
+    f.write(line.strip("\n")+" "+result+" "+str(best)+"\n")
 f.close() 
 
 f=open("knock92_10.txt","w")
@@ -29,6 +29,7 @@ for line in open("knock91.txt","r"):
     result="None"
     words=line.strip("\n").split(" ")[:3]
     if words[0] in model and words[1] in model and words[2] in model:
+        best=result=model.most_similar(positive=[words[1],words[2]],negative=[words[0]])[0][1]
         result=model.most_similar(positive=[words[1],words[2]],negative=[words[0]])[0][0] 
-    f.write(" ".join(line.strip("\n").split()[0:3])+" "+result+"\n")
+    f.write(line.strip("\n")+" "+result+" "+str(best)+"\n")
 f.close()
