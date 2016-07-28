@@ -24,6 +24,7 @@ print (set(unk_list))
 f.close()
 
 #-------------------------------------------------
+'''
 f = open("knock94_85.txt", "w")
 model_85 = pickle.load(open('X_dict.pickle', mode='rb'))
 unk_list = list()
@@ -43,3 +44,4 @@ for line in open("combined.tab"):
     Flag = True
 print (set(unk_list))
 f.close()
+'''
