@@ -26,11 +26,12 @@ class dictdata:
 
 def main():
     model = TSNE(n_components=2)
-    country = dictdata(getCountrydict())
-    result = model.fit_transform(country.getData())
-    print(result)
-    plt.plot(result[:, 0], result[:, 1], ".")
-    # plt.scatter(result[:, 0], result[:, 1], cmap=plt.cm.Spectral)
+    countries = dictdata(getCountrydict())
+    result = model.fit_transform(countries.getData())
+    hidden, graph = plt.subplots()
+    graph.scatter(result[:, 0], result[:, 1], s=1)
+    for i, country in enumerate(countries.getName()):
+        graph.annotate(country, xy=(result[i, 0], result[i, 1]), size=10)
     plt.show()
 
 if __name__ == '__main__':

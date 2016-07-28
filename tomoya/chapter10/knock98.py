@@ -1,4 +1,3 @@
-from sklearn.cluster import AgglomerativeClustering
 from scipy.cluster.hierarchy import ward, dendrogram
 from knock96 import getCountrydict
 from matplotlib.pyplot import show
@@ -26,11 +25,9 @@ class dictdata:
 
 
 def main():
-    wr = AgglomerativeClustering(linkage='ward', n_clusters=5)
     country = dictdata(getCountrydict())
-    wr.fit(country.getData())
     result = ward(country.getData())
-    dendrogram(result, labels=country.getName(), orientation='left')
+    dendrogram(result, labels=country.getName(), orientation='left', leaf_font_size=10)
     show()
 
 if __name__ == '__main__':
