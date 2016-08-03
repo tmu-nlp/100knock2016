@@ -1,7 +1,7 @@
 from gensim.models import word2vec
 
 data = word2vec.Text8Corpus('knock81_corpus.txt')
-model = word2vec.Word2Vec(data)
+model = word2vec.Word2Vec(data, size=300)
 model.save('knock90.model')
 
 print('knock86.py -Word2Vec Ver.-')
